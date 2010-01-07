@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BusinessTimeAppDelegate : NSObject <NSApplicationDelegate> {
+@interface BTBusinessTimeAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
 }
 

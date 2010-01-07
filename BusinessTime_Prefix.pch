@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'BusinessTime' target in the 'BusinessTime' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

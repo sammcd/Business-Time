@@ -25,6 +25,8 @@
     if ( !businessTime ) {
         statusWindowController = [[BTStatusWindowController alloc] init];
         [[statusWindowController window] makeKeyAndOrderFront:self];
+        
+        	
         [businessTimeButton setTitle:@"Its Business Time"];
         businessTime = YES;
     } else {

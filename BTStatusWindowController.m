@@ -46,14 +46,68 @@
     
     self = [super initWithWindow:window];
     if (self) {
-        
+
     }
     return self;
+}
+
+- (void)dealloc {
+    [timeTextField release];
+    
+    if (timeStarted != nil) {
+        [timeStarted release];
+    }
+    
+    [super dealloc];
 }
 
 - (void)awakeFromNib {
     
     
+}
+
+
+- (void)startTimer {
+    NSTimer*         timer;
+    
+    timeStarted = [[NSDate alloc] initWithTimeIntervalSinceNow:0.0];
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+    [timer fire];
+}
+     
+- (void)updateTime {
+    NSInteger   hours;
+    NSInteger   minutes;
+    NSInteger   seconds;
+    NSString*    minuteString;
+    NSString*    secondString;
+    NSString*    hourString;
+
+    NSTimeInterval time = 0 - [timeStarted timeIntervalSinceNow];
+    
+    minutes = (int)time / 60;
+    seconds = (int)time % 60;
+    hours = (int)minutes / 60;
+    
+    if ( seconds < 10 ) {
+        secondString = [NSString stringWithFormat:@"0%d",seconds];
+    } else {
+        secondString = [NSString stringWithFormat:@"%d",seconds];
+    }
+    
+
+    minuteString = [NSString stringWithFormat:@"%d",minutes];
+    
+    if ( hours == 0 ) {
+        hourString = @"";
+    } else if ( hours < 10 ) {
+        hourString = [NSString stringWithFormat:@"0%d:",hours];
+    } else {
+        hourString = [NSString stringWithFormat:@"%d:",hours];
+    }
+    
+    [timeTextField setStringValue:[NSString stringWithFormat:@"%@%@:%@",hourString, minuteString, secondString]];
 }
 
 

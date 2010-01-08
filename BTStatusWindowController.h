@@ -12,9 +12,14 @@
 @interface BTStatusWindowController : NSWindowController {
 
     NSTextField*    timeTextField;
+    NSDate*          timeStarted;
     
 }
 
 - (id)init;
+
+- (void)startTimer;
+- (void)updateTime;
+
 
 @end

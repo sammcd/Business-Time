@@ -8,6 +8,7 @@
 
 #import "BTMainWindowController.h"
 #import "BTStatusWindowController.h"
+#import "BTBlackListWindowController.h"
 
 
 @implementation BTMainWindowController
@@ -20,14 +21,26 @@
     return self;
 }
 
+- (void)dealloc {
+    if ( statusWindowController != nil ) {
+        [statusWindowController release];
+    }
+    if ( blackListWindowController != nil ) {
+        [blackListWindowController release];
+    }
+    
+    [super dealloc];	
+}
+
 - (IBAction)toggleBusinessTime:(id)sender {
     
     if ( !businessTime ) {
         statusWindowController = [[BTStatusWindowController alloc] init];
         [[statusWindowController window] makeKeyAndOrderFront:self];
+        [statusWindowController startTimer];
         
         	
-        [businessTimeButton setTitle:@"Its Business Time"];
+        [businessTimeButton setTitle:@"It's Business Time"];
         businessTime = YES;
     } else {
         if (statusWindowController != nil ) {
@@ -37,6 +50,14 @@
         [businessTimeButton setTitle:@"Take a break"];
     }
 
+    
+}
+
+- (IBAction)editBlackList:(id)sender {
+    if ( blackListWindowController == nil ) {
+        blackListWindowController = [[BTBlackListWindowController alloc] init];
+    }
+    [[blackListWindowController window] makeKeyAndOrderFront:self];
     
 }
 

@@ -7,14 +7,34 @@
 //
 
 #import "BTMainWindowController.h"
-#import "BTStatusWindow.h"
+#import "BTStatusWindowController.h"
 
 
 @implementation BTMainWindowController
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        businessTime = YES;
+    }
+    return self;
+}
+
 - (IBAction)toggleBusinessTime:(id)sender {
-    BTStatusWindow* windowController = [[BTStatusWindow alloc] init];
-	[[windowController window] makeKeyAndOrderFront:self];
+    
+    if ( !businessTime ) {
+        statusWindowController = [[BTStatusWindowController alloc] init];
+        [[statusWindowController window] makeKeyAndOrderFront:self];
+        [businessTimeButton setTitle:@"Its Business Time"];
+        businessTime = YES;
+    } else {
+        if (statusWindowController != nil ) {
+            [[statusWindowController window] close];
+        }
+        businessTime = NO;
+        [businessTimeButton setTitle:@"Take a break"];
+    }
+
     
 }
 

@@ -7,11 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class BTStatusWindowController;
 
 
 @interface BTMainWindowController : NSWindowController {
-
-    
+    BOOL                        businessTime;
+    BTStatusWindowController*   statusWindowController;
+    IBOutlet NSButton*          businessTimeButton;
 }
 
 - (IBAction)toggleBusinessTime:(id)sender;

@@ -9,7 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface BTStatusWindow : NSWindowController {
+@interface BTStatusWindowController : NSWindowController {
+
+    NSTextField*    timeTextField;
     
 }
 

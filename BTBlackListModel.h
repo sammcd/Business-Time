@@ -10,8 +10,13 @@
 
 
 @interface BTBlackListModel : NSObject {
-
+    NSMutableArray*     siteList;
     
 }
+
+- (NSMutableArray*)siteList; 
+- (void)addSite:(NSString*)aSite;
+- (void)removeSite:(NSString*)aSite;
+- (NSInteger)count;
 
 @end

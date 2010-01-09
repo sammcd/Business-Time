@@ -24,4 +24,23 @@
 	[[mainWindowController window] makeKeyAndOrderFront:self];
 }
 
+- (void)applicationDidFinishLaunching:(NSNotification*)notification {
+    
+    // todo add loading code
+}
+
+- (void)applicationWillTerminate:(NSNotification *)application {
+    // todo add saving code
+    
+}
+
+
+
+- (NSString *)applicationSupportFolder {
+	
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
+    return [basePath stringByAppendingPathComponent:@"Launcher"];
+}
+
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "BTBlackListWindowController.h"
+#import "BTBlackListModel.h"
+#import "BTModel.h"
 
 
 @implementation BTBlackListWindowController
@@ -14,25 +16,24 @@
 - (id)init {
     self = [super initWithWindowNibName:@"BlackListWindow"];
     if ( self ) {
-        blackList = [[NSMutableArray alloc] init];
+        blackList = [[BTModel sharedModel] blackListModel];
     }
     return self;
 }
                      
  - (void) dealloc {
-     [blackList release];
      [super dealloc];
  }
 
 
 - (IBAction)addItem:(id)sender {
-    [blackList addObject:@"New Site"];
+    [blackList addSite:@"New Site"];
     [tableView reloadData];
 }
 
 
 - (IBAction)removeItem:(id)sender {
-    [blackList removeObjectAtIndex:[tableView selectedRow]];
+    [[blackList siteList] removeObjectAtIndex:[tableView selectedRow]];
     [tableView reloadData];
 }
 
@@ -44,7 +45,7 @@
 objectValueForTableColumn:(NSTableColumn *)aTableColumn
             row:(int)rowIndex
 {
-    return [blackList objectAtIndex:rowIndex];
+    return [[blackList siteList] objectAtIndex:rowIndex];
 }
 
 
@@ -53,8 +54,8 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
    forTableColumn:(NSTableColumn *)aTableColumn
               row:(int)rowIndex
 {
-    [blackList removeObjectAtIndex:rowIndex];
-    [blackList insertObject:anObject atIndex:rowIndex];
+    [[blackList siteList] removeObjectAtIndex:rowIndex];
+    [[blackList siteList] insertObject:anObject atIndex:rowIndex];
     
 }
 

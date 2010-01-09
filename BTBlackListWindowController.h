@@ -7,10 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class  BTBlackListModel;
 
 
 @interface BTBlackListWindowController : NSWindowController {
-    NSMutableArray*    blackList;
+    BTBlackListModel*    blackList;
     
     IBOutlet NSTableView* tableView;
     

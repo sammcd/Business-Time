@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0249231F10F83943004E858C /* BTBlackListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249231E10F83943004E858C /* BTBlackListModel.m */; };
+		0249233D10F83B32004E858C /* FTHostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249233C10F83B32004E858C /* FTHostsController.m */; };
+		0249234E10F83E83004E858C /* FTHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249234D10F83E83004E858C /* FTHost.m */; };
 		026932D910F6C7AD00257761 /* RedShirt.icns in Resources */ = {isa = PBXBuildFile; fileRef = 026932D810F6C7AD00257761 /* RedShirt.icns */; };
 		0271D55410F78C2700F92A92 /* BlackListWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0271D55310F78C2700F92A92 /* BlackListWindow.xib */; };
 		0271D55910F78C4700F92A92 /* BTBlackListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0271D55810F78C4700F92A92 /* BTBlackListWindowController.m */; };
@@ -36,6 +39,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0249231D10F83943004E858C /* BTBlackListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlackListModel.h; sourceTree = "<group>"; };
+		0249231E10F83943004E858C /* BTBlackListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBlackListModel.m; sourceTree = "<group>"; };
+		0249233B10F83B32004E858C /* FTHostsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTHostsController.h; sourceTree = "<group>"; };
+		0249233C10F83B32004E858C /* FTHostsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTHostsController.m; sourceTree = "<group>"; };
+		0249234C10F83E83004E858C /* FTHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTHost.h; sourceTree = "<group>"; };
+		0249234D10F83E83004E858C /* FTHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTHost.m; sourceTree = "<group>"; };
 		026932D810F6C7AD00257761 /* RedShirt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RedShirt.icns; path = Images/RedShirt.icns; sourceTree = "<group>"; };
 		0271D55310F78C2700F92A92 /* BlackListWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlackListWindow.xib; sourceTree = "<group>"; };
 		0271D55710F78C4700F92A92 /* BTBlackListWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlackListWindowController.h; sourceTree = "<group>"; };
@@ -73,6 +82,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0249233A10F83B20004E858C /* Hosts */ = {
+			isa = PBXGroup;
+			children = (
+				0249233B10F83B32004E858C /* FTHostsController.h */,
+				0249233C10F83B32004E858C /* FTHostsController.m */,
+				0249234C10F83E83004E858C /* FTHost.h */,
+				0249234D10F83E83004E858C /* FTHost.m */,
+			);
+			name = Hosts;
+			sourceTree = "<group>";
+		};
 		0279F10E10F6763600542AB3 /* Window Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +104,15 @@
 				0271D55810F78C4700F92A92 /* BTBlackListWindowController.m */,
 			);
 			name = "Window Controllers";
+			sourceTree = "<group>";
+		};
+		02C9B10C10F79DA400E24789 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0249231D10F83943004E858C /* BTBlackListModel.h */,
+				0249231E10F83943004E858C /* BTBlackListModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* Application */ = {
@@ -125,6 +154,8 @@
 		29B97314FDCFA39411CA2CEA /* BusinessTime */ = {
 			isa = PBXGroup;
 			children = (
+				0249233A10F83B20004E858C /* Hosts */,
+				02C9B10C10F79DA400E24789 /* Model */,
 				0279F10E10F6763600542AB3 /* Window Controllers */,
 				080E96DDFE201D6D7F000001 /* Application */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -230,6 +261,9 @@
 				0279F12010F676CC00542AB3 /* BTMainWindowController.m in Sources */,
 				0279F16510F67A7000542AB3 /* BTStatusWindowController.m in Sources */,
 				0271D55910F78C4700F92A92 /* BTBlackListWindowController.m in Sources */,
+				0249231F10F83943004E858C /* BTBlackListModel.m in Sources */,
+				0249233D10F83B32004E858C /* FTHostsController.m in Sources */,
+				0249234E10F83E83004E858C /* FTHost.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

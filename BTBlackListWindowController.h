@@ -10,7 +10,10 @@
 
 
 @interface BTBlackListWindowController : NSWindowController {
-
+    NSMutableArray*    blackList;
+    
+    IBOutlet NSTableView* tableView;
+    
 }
 
 - (IBAction)addItem:(id)sender;

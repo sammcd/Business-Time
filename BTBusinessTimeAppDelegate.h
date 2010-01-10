@@ -14,4 +14,8 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
+
+/// Application support folder.
+- (NSString *)applicationSupportFolder;
+
 @end

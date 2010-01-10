@@ -8,14 +8,11 @@
 
 #import "BTBusinessTimeAppDelegate.h"
 #import "BTMainWindowController.h"
+#import "BTModel.h"
 
 @implementation BTBusinessTimeAppDelegate
 
 @synthesize window;
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	// Insert code here to initialize your application 
-}
 
 
 - (void)awakeFromNib {
@@ -25,13 +22,22 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification*)notification {
+    NSString* saveDirectory = [self applicationSupportFolder];
+    NSString* appFile = [saveDirectory stringByAppendingPathComponent:@"BTSave"];
+
+    [NSKeyedUnarchiver unarchiveObjectWithFile:appFile];
+
     
-    // todo add loading code
+    
 }
 
 - (void)applicationWillTerminate:(NSNotification *)application {
-    // todo add saving code
+    BTModel* sharedModel = [BTModel sharedModel];
+    NSString* saveDirectory = [self applicationSupportFolder];
+    NSString* appFile = [saveDirectory stringByAppendingPathComponent:@"BTSave"];
     
+    // Since the object is a singleton that responds to this properly, this will work
+    [NSKeyedArchiver archiveRootObject:sharedModel toFile:appFile];
 }
 
 
@@ -40,7 +46,7 @@
 	
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
-    return [basePath stringByAppendingPathComponent:@"Launcher"];
+    return [basePath stringByAppendingPathComponent:@"BusinessTime"];
 }
 
 @end

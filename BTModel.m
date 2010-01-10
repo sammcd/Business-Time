@@ -9,6 +9,8 @@
 #import "BTModel.h"
 #import "BTBlackListModel.h"
 
+static BTModel *sharedModel = nil;
+
 
 @implementation BTModel
 
@@ -19,6 +21,29 @@
     }
     return self;
 }
+
+
+- (id)initWithCoder:(NSCoder*)coder {
+    if ( sharedModel == nil ) {
+        [BTModel  sharedModel];
+    }
+    
+    // Set values equal to the coder
+    if ( blackListModel != nil ) {
+        [blackListModel release];
+    }
+    
+    blackListModel = [[coder decodeObjectForKey:@"BTMBlackList"] retain];
+    
+    return sharedModel;
+}
+
+- (void)encodeWithCoder:(NSCoder*)coder {
+    
+    [coder encodeObject:blackListModel forKey:@"BTMBlackList"];
+    [coder encodeObject:@"0.1"  forKey:@"BTMVersion"];
+}
+
 
 - (BTBlackListModel*)blackListModel {
     return blackListModel;
@@ -33,7 +58,6 @@
 //////////////////////////
 // Singelton Code
 //////////////////////////
-static BTModel *sharedModel = nil;
 
 + (BTModel*)sharedModel
 {

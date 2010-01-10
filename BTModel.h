@@ -20,4 +20,5 @@
 /// @return The black list model
 - (BTBlackListModel*)blackListModel;
 
+
 @end

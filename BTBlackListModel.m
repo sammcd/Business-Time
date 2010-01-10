@@ -24,6 +24,20 @@
     [super dealloc];
 }
 
+- (id)initWithCoder:(NSCoder*)coder {
+    self = [super init];
+    if ( self) {
+        siteList = [[coder decodeObjectForKey:@"BTBSiteList"] retain];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)coder {
+    [coder encodeObject:siteList forKey:@"BTBSiteList"];
+    
+}
+
+
 - (NSMutableArray*)siteList {
     return siteList;
 }

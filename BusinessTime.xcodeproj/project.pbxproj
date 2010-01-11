@@ -19,6 +19,8 @@
 		0279F12010F676CC00542AB3 /* BTMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0279F11F10F676CC00542AB3 /* BTMainWindowController.m */; };
 		0279F12610F676F400542AB3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0279F12510F676F400542AB3 /* MainWindow.xib */; };
 		0279F16510F67A7000542AB3 /* BTStatusWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0279F16410F67A7000542AB3 /* BTStatusWindowController.m */; };
+		02E629B810FA48130000BEA2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E629B710FA48130000BEA2 /* Security.framework */; };
+		02E629CA10FA4A880000BEA2 /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E629C910FA4A880000BEA2 /* SecurityFoundation.framework */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* BTBusinessTimeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* BTBusinessTimeAppDelegate.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -58,6 +60,8 @@
 		0279F12510F676F400542AB3 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		0279F16310F67A7000542AB3 /* BTStatusWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTStatusWindowController.h; sourceTree = "<group>"; };
 		0279F16410F67A7000542AB3 /* BTStatusWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTStatusWindowController.m; sourceTree = "<group>"; };
+		02E629B710FA48130000BEA2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		02E629C910FA4A880000BEA2 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -79,6 +83,8 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				0271D5B310F791AA00F92A92 /* BWToolkitFramework.framework in Frameworks */,
+				02E629B810FA48130000BEA2 /* Security.framework in Frameworks */,
+				02E629CA10FA4A880000BEA2 /* SecurityFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +150,8 @@
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				02E629B710FA48130000BEA2 /* Security.framework */,
+				02E629C910FA4A880000BEA2 /* SecurityFoundation.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";

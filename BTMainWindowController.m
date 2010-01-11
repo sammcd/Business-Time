@@ -9,6 +9,8 @@
 #import "BTMainWindowController.h"
 #import "BTStatusWindowController.h"
 #import "BTBlackListWindowController.h"
+#import "BTBlackListModel.h"
+#import "BTModel.h"
 
 
 @implementation BTMainWindowController
@@ -33,21 +35,28 @@
 }
 
 - (IBAction)toggleBusinessTime:(id)sender {
+    // Enable the host filtering
+    BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
     
     if ( !businessTime ) {
         statusWindowController = [[BTStatusWindowController alloc] init];
         [[statusWindowController window] makeKeyAndOrderFront:self];
         [statusWindowController startTimer];
-        
-        	
         [businessTimeButton setTitle:@"It's Business Time"];
         businessTime = YES;
+        
+        [blackListModel enableFilters];
+
+        
     } else {
         if (statusWindowController != nil ) {
             [[statusWindowController window] close];
         }
         businessTime = NO;
         [businessTimeButton setTitle:@"Take a break"];
+        
+        // Disable the host filtering.
+        [blackListModel disableFilters];
     }
 
     

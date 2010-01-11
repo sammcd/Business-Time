@@ -7,6 +7,7 @@
 //
 
 #import "BTBlackListModel.h"
+#import "FTHostsController.h"
 
 
 @implementation BTBlackListModel
@@ -15,12 +16,15 @@
     self = [super init];
     if (self) {
         siteList = [[NSMutableArray alloc] init];
+        hostsController = [[FTHostsController alloc] init];
+        [hostsController setUniqueName:@"BusinessTime"];
     }
     return self;
 }
 
 - (void)dealloc {
     [siteList release];
+    [hostsController release];
     [super dealloc];
 }
 
@@ -28,6 +32,8 @@
     self = [super init];
     if ( self) {
         siteList = [[coder decodeObjectForKey:@"BTBSiteList"] retain];
+        hostsController = [[FTHostsController alloc] init];
+        [hostsController setUniqueName:@"BusinessTime"];
     }
     return self;
 }
@@ -52,6 +58,18 @@
 
 - (NSInteger)count {
     return [siteList count];
+}
+
+
+- (void)enableFilters {
+    for ( NSString* site in siteList ) {
+        [hostsController addHostWithName:site ip:@"127.0.0.1"];
+    }
+    [hostsController writeHostsToFile];    
+}
+
+- (void)disableFilters {
+    [hostsController removeHostsFromFile];
 }
 
 

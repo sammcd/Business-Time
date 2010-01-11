@@ -7,10 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+@class FTHostsController;
 
 @interface BTBlackListModel : NSObject {
     NSMutableArray*     siteList;
+    FTHostsController*  hostsController;
     
 }
 
@@ -18,5 +19,8 @@
 - (void)addSite:(NSString*)aSite;
 - (void)removeSite:(NSString*)aSite;
 - (NSInteger)count;
+
+- (void)enableFilters;
+- (void)disableFilters;
 
 @end

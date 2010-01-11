@@ -11,14 +11,13 @@
 
 @interface FTHostsController : NSObject {
     NSString*       uniqueName;
+    NSMutableArray* hosts;
+    
 }
 
 
-/// Load existing hosts file.
-- (void)loadHosts;
-
-/// Write to the hosts file.
-- (void)writeHosts;
+- (void)writeHostsToFile;
+- (void)removeHostsFromFile;
 
 /// This is the unique name that will identify your apps section of the hosts file defaults to 'HostsController'
 - (void)setUniqueName:(NSString*)aName;
@@ -26,6 +25,6 @@
 /// Add a host to the list.
 - (void)addHostWithName:(NSString*)aName ip:(NSString*)ip;
 
-
+- (NSString*)readHostsFile;
 
 @end

@@ -30,7 +30,7 @@
 
 
 - (NSString*)readHostsFile {
-    return [NSString stringWithContentsOfFile:@"/etc/hosts" encoding:NSASCIIStringEncoding error:NULL];
+    return [NSString stringWithContentsOfFile:@"/Users/sammcd/Desktop/hosts" encoding:NSASCIIStringEncoding error:NULL];
 }
 
 
@@ -63,7 +63,7 @@
 
     } else {
         // We did find the section, so update it.
-
+        NSLog(@"Update");
         NSRange rangeToDelete;
         rangeToDelete.location = startRange.location + startRange.length; // end of first line
         
@@ -73,15 +73,23 @@
             // Time for some major repair!!
             // todo: handle gracefully, right now we just delete it all
             
-            rangeToDelete.length = [hostsFile length] - rangeToDelete.location;
+            rangeToDelete.length = [hostsFile length] - rangeToDelete.location - 1;
             
         } else {
-            rangeToDelete.length = endRange.location - startRange.location;
+            rangeToDelete.length = endRange.location - startRange.location - 1;
+            NSLog(@"%d - %d = %d",endRange.location, startRange.location,rangeToDelete.length);
+
         }
         
+        NSLog(@"%d %d %d",rangeToDelete.location, rangeToDelete.length, [hostsFile length]);
         
-        //[hostsFile replaceCharactersInRange:rangeToDelete withString:newHosts];
+        if ( rangeToDelete.length > [sectionStart length] ) 
+            [hostsFile deleteCharactersInRange:rangeToDelete];
         
+        [hostsFile insertString:@"\n" atIndex:rangeToDelete.location];
+        [hostsFile insertString:newHosts atIndex:rangeToDelete.location+1];
+        [hostsFile insertString:@"\n" atIndex:rangeToDelete.location ];
+        [hostsFile insertString:sectionEnd atIndex:rangeToDelete.location ];
                 
     }
     
@@ -97,10 +105,60 @@
 }
 
 - (void)removeHostsFromFile {
-  
-    // Find section
+    NSMutableString*     hostsFile;
+    NSString*           sectionStart;
+    NSString*           sectionEnd;
     
-    // Remove section
+    sectionStart = [NSString stringWithFormat:@"# %@ START",uniqueName];
+    sectionEnd = [NSString stringWithFormat:@"# %@ END",uniqueName];
+    
+    // Open file
+    hostsFile = [[NSMutableString alloc] initWithString:[self readHostsFile]];
+    
+    // Find section
+    // Check if we have already talked to this file.
+    NSRange startRange = [hostsFile rangeOfString:sectionStart];  
+    
+    if ( startRange.location == NSNotFound ) {
+        // Did not find the section so do nothing.
+        
+    } else {
+        // We did find the section, so update it.
+        NSLog(@"Update");
+        NSRange rangeToDelete;
+        rangeToDelete.location = startRange.location + startRange.length; // end of first line
+        
+        NSRange endRange = [hostsFile rangeOfString:sectionEnd];
+        if ( endRange.location == NSNotFound ) {
+            // Okay so the stupid user messed up my pretty little file.
+            // Time for some major repair!!
+            // todo: handle gracefully, right now we just delete it all
+            
+            rangeToDelete.length = [hostsFile length] - rangeToDelete.location -1;
+            
+        } else {
+            rangeToDelete.length = endRange.location - startRange.location - 1;
+            NSLog(@"%d - %d = %d",endRange.location, startRange.location,rangeToDelete.length);
+            
+        }
+        
+        NSLog(@"%d %d %d",rangeToDelete.location, rangeToDelete.length, [hostsFile length]);
+        
+        NSLog(@"%@",hostsFile);
+        if ( rangeToDelete.length > [sectionStart length] ) 
+            [hostsFile deleteCharactersInRange:rangeToDelete];
+        NSLog(@"===================================");
+        NSLog(@"%@",hostsFile);
+        //NSLog(@"length: %d index: %d",[hostsFile length];
+        [hostsFile insertString:@"\n" atIndex:rangeToDelete.location ];
+        [hostsFile insertString:sectionEnd atIndex:rangeToDelete.location+1];
+        
+    }
+    
+    NSLog(@"Tried to delete");
+    
+    NSError* error;
+    [hostsFile writeToFile:@"/Users/sammcd/Desktop/hosts" atomically:YES encoding:NSASCIIStringEncoding error:&error];
     
     // Flush DNS caches
 }

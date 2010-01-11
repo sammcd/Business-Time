@@ -44,9 +44,9 @@
         [statusWindowController startTimer];
         [businessTimeButton setTitle:@"It's Business Time"];
         businessTime = YES;
-        
-        [blackListModel enableFilters];
-
+       
+        // Disable the host filtering.
+        [blackListModel disableFilters];
         
     } else {
         if (statusWindowController != nil ) {
@@ -55,8 +55,8 @@
         businessTime = NO;
         [businessTimeButton setTitle:@"Take a break"];
         
-        // Disable the host filtering.
-        [blackListModel disableFilters];
+        [blackListModel enableFilters];
+
     }
 
     

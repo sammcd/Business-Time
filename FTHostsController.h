@@ -15,7 +15,7 @@
     
 }
 
-
++ (void)flushDNS;
 - (void)writeHostsToFile;
 - (void)removeHostsFromFile;
 

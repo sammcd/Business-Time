@@ -65,11 +65,13 @@
     for ( NSString* site in siteList ) {
         [hostsController addHostWithName:site ip:@"127.0.0.1"];
     }
-    [hostsController writeHostsToFile];    
+    [hostsController writeHostsToFile];   
+    [FTHostsController flushDNS];
 }
 
 - (void)disableFilters {
     [hostsController removeHostsFromFile];
+    [FTHostsController flushDNS];
 }
 
 

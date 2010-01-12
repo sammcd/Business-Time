@@ -68,11 +68,12 @@
         rangeToDelete.location = startRange.location + startRange.length; // end of first line
         
         NSRange endRange = [hostsFile rangeOfString:sectionEnd];
+        BOOL endRangeFound = YES;
         if ( endRange.location == NSNotFound ) {
             // Okay so the stupid user messed up my pretty little file.
             // Time for some major repair!!
             // todo: handle gracefully, right now we just delete it all
-            
+            endRangeFound = NO;
             rangeToDelete.length = [hostsFile length] - rangeToDelete.location - 1;
             
         } else {
@@ -83,13 +84,18 @@
         
         NSLog(@"%d %d %d",rangeToDelete.location, rangeToDelete.length, [hostsFile length]);
         
-        if ( rangeToDelete.length > [sectionStart length] ) 
+        BOOL noHostsInSection;
+        if ( rangeToDelete.length > [sectionStart length] ) { 
             [hostsFile deleteCharactersInRange:rangeToDelete];
+            noHostsInSection = YES;
+        }
         
         [hostsFile insertString:@"\n" atIndex:rangeToDelete.location];
         [hostsFile insertString:newHosts atIndex:rangeToDelete.location+1];
         [hostsFile insertString:@"\n" atIndex:rangeToDelete.location ];
-        [hostsFile insertString:sectionEnd atIndex:rangeToDelete.location ];
+        
+        if ( !endRangeFound )
+            [hostsFile insertString:sectionEnd atIndex:rangeToDelete.location+ [newHosts length] ];
                 
     }
     
@@ -145,8 +151,13 @@
         NSLog(@"%d %d %d",rangeToDelete.location, rangeToDelete.length, [hostsFile length]);
         
         NSLog(@"%@",hostsFile);
-        if ( rangeToDelete.length > [sectionStart length] ) 
+        BOOL noHostsInSection = NO;
+        if ( rangeToDelete.length > [sectionStart length] ) { 
             [hostsFile deleteCharactersInRange:rangeToDelete];
+            noHostsInSection = YES;
+        }
+        
+            
         NSLog(@"===================================");
         NSLog(@"%@",hostsFile);
         //NSLog(@"length: %d index: %d",[hostsFile length];

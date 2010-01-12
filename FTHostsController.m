@@ -35,41 +35,71 @@
 
 
 - (void)writeHostsToFile {
-    NSString*   hostsFile;
-    NSString*   sectionStart;
-    NSString*   sectionEnd;
-    NSArray*    hostsArray;
-    int         startLine  = -1;
-    int         stopLine = -1;
+    NSString*           sectionStart;
+    NSString*           sectionEnd;
+    NSString*           hostsString;
+    NSMutableArray*     hostsArray;
+    int                 startLine  = -1;
+    int                 stopLine = -1;
+    int                 indexToAdd = 0;
     
-    hostsFile = [self readHostsFile];
+    hostsArray = [[NSMutableArray alloc] initWithArray:[[self readHostsFile] componentsSeparatedByString:@"\n"]];
     
     sectionStart = [NSString stringWithFormat:@"# %@ START",uniqueName];
-    sectionEnd = [NSString stringWIthFormat:@"# %@ END",uniqueName];
+    sectionEnd = [NSString stringWithFormat:@"# %@ END",uniqueName];
     
-    // now break into lines.
-    hostsArray = [hostsFile componentsSeparatedByString:@"\n"];
+     
     
     // Loop through the array looking for the line end and beginning.
     int i;
     for (i = 0; i < [hostsArray count]; i++ ) {
         NSString* line = [hostsArray objectAtIndex:i];
         if ( [line hasSuffix:sectionStart] ) {
-            sectionStart = i;
+            startLine = i;
             break;
         }
     }
     
     for (i = 0; i < [hostsArray count]; i++ ) {
         NSString* line = [hostsArray objectAtIndex:i];
-        if ( [line hasSuffix:sectionEnd ) {
-            sectionEnd = i;
+        if ( [line hasSuffix:sectionEnd] ) {
+            stopLine = i;
             break;
         }
     }
               
+              
+    if ( startLine == -1 ) {
+        // There is no section so create it.
+        [hostsArray addObject:[NSString stringWithFormat:@"%@",sectionStart]];
+        indexToAdd = [hostsArray count];
+        [hostsArray addObject:[NSString stringWithFormat:@"%@",sectionEnd]];
+        
+        
+    } else {
+        // There is a section so play with it.
+        NSRange removeRange;
+        removeRange.location = startLine + 1;
+        removeRange.length = stopLine - removeRange.location;
+        [hostsArray removeObjectsInRange:removeRange];
+        indexToAdd = startLine + 1;
+    }
     
+    // Let create the array of lines that 
+    // Should be in the middle
+    for ( FTHost* host in hosts ) {
+        [hostsArray insertObject:[NSString stringWithFormat:@"%@ %@",host.ip, host.name] atIndex:indexToAdd];
+        indexToAdd++;
+    }
     
+    // Bring array back to string.
+    hostsString = [hostsArray componentsJoinedByString:@"\n"];
+    NSLog(@"hosts array %d:\n%@",[hostsArray count],hostsArray);
+    NSLog(@"hosts string:\n%@",hostsString);
+    
+    NSError* fileError;
+    [hostsString writeToFile:@"/Users/sammcd/Desktop/hosts" atomically:YES encoding:NSASCIIStringEncoding error:&fileError];
+        
 }
 
 - (void)removeHostsFromFile {

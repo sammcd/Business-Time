@@ -35,30 +35,43 @@
 }
 
 - (IBAction)toggleBusinessTime:(id)sender {
-    // Enable the host filtering
-    BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
     
     if ( !businessTime ) {
-        statusWindowController = [[BTStatusWindowController alloc] init];
-        [[statusWindowController window] makeKeyAndOrderFront:self];
-        [statusWindowController startTimer];
-        [businessTimeButton setTitle:@"It's Business Time"];
-        businessTime = YES;
-       
-        // Disable the host filtering.
-        [blackListModel disableFilters];
+        [self stopBusinessTime];
         
     } else {
-        if (statusWindowController != nil ) {
-            [[statusWindowController window] close];
-        }
-        businessTime = NO;
-        [businessTimeButton setTitle:@"Take a break"];
-        
-        [blackListModel enableFilters];
+        [self startBusinessTime];
 
     }
 
+    
+}
+
+
+
+- (void)stopBusinessTime {
+    BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
+
+    statusWindowController = [[BTStatusWindowController alloc] init];
+    [[statusWindowController window] makeKeyAndOrderFront:self];
+    [statusWindowController startTimer];
+    [businessTimeButton setTitle:@"It's Business Time"];
+    businessTime = YES;
+    
+    // Disable the host filtering.
+    [blackListModel disableFilters];
+}
+
+- (void)startBusinessTime {
+    BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
+
+    if (statusWindowController != nil ) {
+        [[statusWindowController window] close];
+    }
+    businessTime = NO;
+    [businessTimeButton setTitle:@"Take a break"];
+    
+    [blackListModel enableFilters];
     
 }
 

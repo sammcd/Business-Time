@@ -20,4 +20,6 @@
 - (IBAction)toggleBusinessTime:(id)sender;
 - (IBAction)editBlackList:(id)sender;
 
+- (void)startBusinessTime;
+- (void)stopBusinessTime;
 @end

@@ -9,6 +9,8 @@
 #import "BTBusinessTimeAppDelegate.h"
 #import "BTMainWindowController.h"
 #import "BTModel.h"
+#import "BTBlackListModel.h"
+#import "FTHostsController.h"
 
 @implementation BTBusinessTimeAppDelegate
 
@@ -22,22 +24,29 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification*)notification {
+
     NSString* saveDirectory = [self applicationSupportFolder];
     NSString* appFile = [saveDirectory stringByAppendingPathComponent:@"BTSave"];
 
     [NSKeyedUnarchiver unarchiveObjectWithFile:appFile];
-
     
+    [[[BTModel sharedModel] blackListModel] enableFilters];
+    [FTHostsController flushDNS];
     
 }
 
 - (void)applicationWillTerminate:(NSNotification *)application {
+
     BTModel* sharedModel = [BTModel sharedModel];
     NSString* saveDirectory = [self applicationSupportFolder];
     NSString* appFile = [saveDirectory stringByAppendingPathComponent:@"BTSave"];
     
     // Since the object is a singleton that responds to this properly, this will work
     [NSKeyedArchiver archiveRootObject:sharedModel toFile:appFile];
+    
+    [[[BTModel sharedModel] blackListModel] disableFilters];
+    [FTHostsController flushDNS];
+
 }
 
 

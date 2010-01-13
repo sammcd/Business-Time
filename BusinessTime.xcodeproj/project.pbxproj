@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		023C33DE10FD73AB00621984 /* NSFileManagerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 023C33DD10FD73AB00621984 /* NSFileManagerAdditions.m */; };
 		0249231F10F83943004E858C /* BTBlackListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249231E10F83943004E858C /* BTBlackListModel.m */; };
 		0249233D10F83B32004E858C /* FTHostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249233C10F83B32004E858C /* FTHostsController.m */; };
 		0249234E10F83E83004E858C /* FTHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249234D10F83E83004E858C /* FTHost.m */; };
@@ -19,7 +20,6 @@
 		0279F12010F676CC00542AB3 /* BTMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0279F11F10F676CC00542AB3 /* BTMainWindowController.m */; };
 		0279F12610F676F400542AB3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0279F12510F676F400542AB3 /* MainWindow.xib */; };
 		0279F16510F67A7000542AB3 /* BTStatusWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0279F16410F67A7000542AB3 /* BTStatusWindowController.m */; };
-		02E44EEE10FD030100D128F9 /* NSFileManager+Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E44EED10FD030100D128F9 /* NSFileManager+Authentication.m */; };
 		02E629B810FA48130000BEA2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E629B710FA48130000BEA2 /* Security.framework */; };
 		02E629CA10FA4A880000BEA2 /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E629C910FA4A880000BEA2 /* SecurityFoundation.framework */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
@@ -43,6 +43,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		023C33DC10FD73AB00621984 /* NSFileManagerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManagerAdditions.h; sourceTree = "<group>"; };
+		023C33DD10FD73AB00621984 /* NSFileManagerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerAdditions.m; sourceTree = "<group>"; };
 		0249231D10F83943004E858C /* BTBlackListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlackListModel.h; sourceTree = "<group>"; };
 		0249231E10F83943004E858C /* BTBlackListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBlackListModel.m; sourceTree = "<group>"; };
 		0249233B10F83B32004E858C /* FTHostsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTHostsController.h; sourceTree = "<group>"; };
@@ -61,8 +63,6 @@
 		0279F12510F676F400542AB3 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		0279F16310F67A7000542AB3 /* BTStatusWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTStatusWindowController.h; sourceTree = "<group>"; };
 		0279F16410F67A7000542AB3 /* BTStatusWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTStatusWindowController.m; sourceTree = "<group>"; };
-		02E44EEC10FD030100D128F9 /* NSFileManager+Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Authentication.h"; sourceTree = "<group>"; };
-		02E44EED10FD030100D128F9 /* NSFileManager+Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Authentication.m"; sourceTree = "<group>"; };
 		02E629B710FA48130000BEA2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		02E629C910FA4A880000BEA2 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -129,13 +129,13 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		02E44EE610FD02D900D128F9 /* Categories */ = {
+		02E44EE610FD02D900D128F9 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				02E44EEC10FD030100D128F9 /* NSFileManager+Authentication.h */,
-				02E44EED10FD030100D128F9 /* NSFileManager+Authentication.m */,
+				023C33DC10FD73AB00621984 /* NSFileManagerAdditions.h */,
+				023C33DD10FD73AB00621984 /* NSFileManagerAdditions.m */,
 			);
-			name = Categories;
+			name = Authentication;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* Application */ = {
@@ -179,7 +179,7 @@
 		29B97314FDCFA39411CA2CEA /* BusinessTime */ = {
 			isa = PBXGroup;
 			children = (
-				02E44EE610FD02D900D128F9 /* Categories */,
+				02E44EE610FD02D900D128F9 /* Authentication */,
 				0249233A10F83B20004E858C /* Hosts */,
 				02C9B10C10F79DA400E24789 /* Model */,
 				0279F10E10F6763600542AB3 /* Window Controllers */,
@@ -291,7 +291,7 @@
 				0249233D10F83B32004E858C /* FTHostsController.m in Sources */,
 				0249234E10F83E83004E858C /* FTHost.m in Sources */,
 				0249235710F840B0004E858C /* BTModel.m in Sources */,
-				02E44EEE10FD030100D128F9 /* NSFileManager+Authentication.m in Sources */,
+				023C33DE10FD73AB00621984 /* NSFileManagerAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

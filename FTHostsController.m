@@ -8,6 +8,7 @@
 
 #import "FTHostsController.h"
 #import "FTHost.h"
+#import "NSFileManagerAdditions.h"
 #import <Security/Security.h>
 #import <SecurityFoundation/SFAuthorization.h>
 
@@ -30,7 +31,7 @@
 
 + (void)flushDNS {
     NSArray* arguments = [NSArray arrayWithObjects:@"-flushcache",nil];
-    [NSTask launchedTaskWithLaunchPath:@"" arguments:arguments];
+    [NSTask launchedTaskWithLaunchPath:@"/usr/bin/dscacheutil" arguments:arguments];
 }
 
 
@@ -99,11 +100,12 @@
     
     // Bring array back to string.
     hostsString = [hostsArray componentsJoinedByString:@"\n"];
-    NSLog(@"hosts array %d:\n%@",[hostsArray count],hostsArray);
-    NSLog(@"hosts string:\n%@",hostsString);
+
     
     NSError* fileError;
-    [hostsString writeToFile:@"/Users/sammcd/Desktop/hosts" atomically:YES encoding:NSASCIIStringEncoding error:&fileError];
+    NSString* tmpPath = [[NSFileManager defaultManager] newTmpFilePath];
+    [hostsString writeToFile:tmpPath atomically:YES encoding:NSASCIIStringEncoding error:&fileError];
+    [[NSFileManager defaultManager] authorizedMovePath:tmpPath toPath:@"/etc/hosts"];
         
 }
 
@@ -164,7 +166,9 @@
     hostsString = [hostsArray componentsJoinedByString:@"\n"];
     
     NSError* fileError;
-    [hostsString writeToFile:@"/Users/sammcd/Desktop/hosts" atomically:YES encoding:NSASCIIStringEncoding error:&fileError];
+    NSString* tmpPath = [[NSFileManager defaultManager] newTmpFilePath];
+    [hostsString writeToFile:tmpPath atomically:YES encoding:NSASCIIStringEncoding error:&fileError];
+    [[NSFileManager defaultManager] authorizedMovePath:tmpPath toPath:@"/etc/hosts"];
     
 }
 
@@ -189,11 +193,23 @@
 
 
 - (void)addHostWithName:(NSString*)aName ip:(NSString*)ip {
-    FTHost* aHost = [[FTHost alloc] init];
-    aHost.name = aName;
-    aHost.ip = ip;
+    BOOL updated = NO;
     
-    [hosts addObject:aHost];
+    for ( FTHost* host in hosts ) {
+        if ( [host.name isEqualToString:aName] ) {
+            host.ip = ip;
+            updated = YES;
+        }
+    }
+    
+    if ( !updated ) {
+        FTHost* aHost = [[FTHost alloc] init];
+        aHost.name = aName;
+        aHost.ip = ip;
+        
+        [hosts addObject:aHost];  
+    }
+
 }
 
 

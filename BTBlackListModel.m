@@ -62,6 +62,7 @@
 
 
 - (void)enableFilters {
+
     for ( NSString* site in siteList ) {
         [hostsController addHostWithName:site ip:@"127.0.0.1"];
     }

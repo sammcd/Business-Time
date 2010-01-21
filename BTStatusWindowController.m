@@ -84,7 +84,7 @@
     NSString*    secondString;
     NSString*    hourString;
 
-    NSTimeInterval time = 60*60-10 - [timeStarted timeIntervalSinceNow];
+    NSTimeInterval time = 0 - [timeStarted timeIntervalSinceNow];
     
     minutes = (int)time / 60 % 60;
     seconds = (int)time % 60;

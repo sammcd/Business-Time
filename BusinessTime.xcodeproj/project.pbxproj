@@ -334,7 +334,9 @@
 				GCC_PREFIX_HEADER = BusinessTime_Prefix.pch;
 				INFOPLIST_FILE = "BusinessTime-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = BusinessTime;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -352,7 +354,9 @@
 				GCC_PREFIX_HEADER = BusinessTime_Prefix.pch;
 				INFOPLIST_FILE = "BusinessTime-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = BusinessTime;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};

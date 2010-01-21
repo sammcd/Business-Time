@@ -46,7 +46,6 @@
     
     [[[BTModel sharedModel] blackListModel] disableFilters];
     [FTHostsController flushDNS];
-
 }
 
 

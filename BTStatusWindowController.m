@@ -18,7 +18,7 @@
     
     // Create a window to place in the top right of the screen
     NSRect windowRect;
-    windowRect.size.width = 150;
+    windowRect.size.width = 170;
     windowRect.size.height = 60;
     windowRect.origin.x = screenRect.size.width - windowRect.size.width - 20;
     windowRect.origin.y = screenRect.size.height - windowRect.size.height - 40;    
@@ -77,18 +77,18 @@
 }
      
 - (void)updateTime {
-    NSInteger   hours;
-    NSInteger   minutes;
-    NSInteger   seconds;
+    NSInteger   hours = 0;
+    NSInteger   minutes = 0;
+    NSInteger   seconds = 0;
     NSString*    minuteString;
     NSString*    secondString;
     NSString*    hourString;
 
-    NSTimeInterval time = 0 - [timeStarted timeIntervalSinceNow];
+    NSTimeInterval time = 60*60-10 - [timeStarted timeIntervalSinceNow];
     
-    minutes = (int)time / 60;
+    minutes = (int)time / 60 % 60;
     seconds = (int)time % 60;
-    hours = (int)minutes / 60;
+    hours = (int)time / 60 / 60;
     
     if ( seconds < 10 ) {
         secondString = [NSString stringWithFormat:@"0%d",seconds];
@@ -96,13 +96,15 @@
         secondString = [NSString stringWithFormat:@"%d",seconds];
     }
     
+    if ( minutes < 10 ) {
+        minuteString = [NSString stringWithFormat:@"0%d",minutes];
+    } else {
+        minuteString = [NSString stringWithFormat:@"%d",minutes];
+    }
 
-    minuteString = [NSString stringWithFormat:@"%d",minutes];
     
     if ( hours == 0 ) {
         hourString = @"";
-    } else if ( hours < 10 ) {
-        hourString = [NSString stringWithFormat:@"0%d:",hours];
     } else {
         hourString = [NSString stringWithFormat:@"%d:",hours];
     }

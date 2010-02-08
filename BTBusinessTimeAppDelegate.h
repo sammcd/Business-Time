@@ -7,9 +7,19 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class BTStatusWindowController, BTBlackListWindowController;
 
 @interface BTBusinessTimeAppDelegate : NSObject /*<NSApplicationDelegate>*/ {
-    NSWindow *window;
+    NSWindow            *window;
+    IBOutlet NSMenu     *statusMenu;
+    NSStatusItem        *statusItem;
+    
+    BOOL                            businessTime;
+    BTStatusWindowController*       statusWindowController;
+    BTBlackListWindowController*    blackListWindowController;
+    //IBOutlet NSButton*              businessTimeButton;
+    
+    IBOutlet NSMenuItem*            businessTimeButton;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -17,5 +27,13 @@
 
 /// Application support folder.
 - (NSString *)applicationSupportFolder;
+
+
+- (IBAction)toggleBusinessTime:(id)sender;
+- (IBAction)editBlackList:(id)sender;
+
+- (void)stopBusinessTime;
+- (void)startBusinessTime;
+- (IBAction)quit:(id)sender;
 
 @end

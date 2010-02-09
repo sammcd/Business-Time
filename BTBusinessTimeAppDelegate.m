@@ -7,7 +7,6 @@
 //
 
 #import "BTBusinessTimeAppDelegate.h"
-#import "BTMainWindowController.h"
 #import "BTModel.h"
 #import "BTBlackListModel.h"
 #import "FTHostsController.h"

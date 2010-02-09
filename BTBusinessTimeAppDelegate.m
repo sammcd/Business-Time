@@ -13,6 +13,7 @@
 #import "FTHostsController.h"
 #import "BTStatusWindowController.h"
 #import "BTBlackListWindowController.h"
+#import "BTBusinessTimeController.h"
 
 @implementation BTBusinessTimeAppDelegate
 
@@ -20,14 +21,14 @@
 
 
 - (void)awakeFromNib {
-    // This nib has awoken lets create our main window.
-	//BTMainWindowController* mainWindowController = [[BTMainWindowController alloc] initWithWindowNibName:@"MainWindow"];
-	//[[mainWindowController window] makeKeyAndOrderFront:self];
     
+    // Create status bar.
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setMenu:statusMenu];
     [statusItem setTitle:@"BT"];
     [statusItem setHighlightMode:YES];
+    businessTimeController = [[BTBusinessTimeController alloc] init];
+    
     businessTime = NO;
 }
 
@@ -82,42 +83,19 @@
     
     if ( !businessTime ) {
         NSLog(@"stopping Business Time: %d", businessTime);
-        [self stopBusinessTime];
-        
+        [businessTimeController stopBusinessTime];
+        businessTime = YES;
+        [businessTimeButton setTitle:@"It's Business Time"];
+
     } else {
         NSLog(@"Starting business Time: %d", businessTime);
-        [self startBusinessTime];
-        
+        [businessTimeController startBusinessTime];
+        businessTime = NO;
+        [businessTimeButton setTitle:@"Take a break"];
+
     }
 }
 
-
-
-- (void)stopBusinessTime {
-    BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
-    
-    statusWindowController = [[BTStatusWindowController alloc] init];
-    [[statusWindowController window] makeKeyAndOrderFront:self];
-    [statusWindowController startTimer];
-    [businessTimeButton setTitle:@"It's Business Time"];
-    businessTime = YES;
-    
-    // Disable the host filtering.
-    [blackListModel disableFilters];
-}
-
-- (void)startBusinessTime {
-    BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
-    
-    if (statusWindowController != nil ) {
-        [[statusWindowController window] close];
-    }
-    businessTime = NO;
-    [businessTimeButton setTitle:@"Take a break"];
-    
-    [blackListModel enableFilters];
-    
-}
 
 - (IBAction)editBlackList:(id)sender {
     if ( blackListWindowController == nil ) {

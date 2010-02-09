@@ -20,6 +20,7 @@
 		0279F12010F676CC00542AB3 /* BTMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0279F11F10F676CC00542AB3 /* BTMainWindowController.m */; };
 		0279F12610F676F400542AB3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0279F12510F676F400542AB3 /* MainWindow.xib */; };
 		0279F16510F67A7000542AB3 /* BTStatusWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0279F16410F67A7000542AB3 /* BTStatusWindowController.m */; };
+		0298C84C1121DB53009CD69B /* BTBusinessTimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0298C84B1121DB53009CD69B /* BTBusinessTimeController.m */; };
 		02E629B810FA48130000BEA2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E629B710FA48130000BEA2 /* Security.framework */; };
 		02E629CA10FA4A880000BEA2 /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E629C910FA4A880000BEA2 /* SecurityFoundation.framework */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
@@ -63,6 +64,8 @@
 		0279F12510F676F400542AB3 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		0279F16310F67A7000542AB3 /* BTStatusWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTStatusWindowController.h; sourceTree = "<group>"; };
 		0279F16410F67A7000542AB3 /* BTStatusWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTStatusWindowController.m; sourceTree = "<group>"; };
+		0298C84A1121DB53009CD69B /* BTBusinessTimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBusinessTimeController.h; sourceTree = "<group>"; };
+		0298C84B1121DB53009CD69B /* BTBusinessTimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBusinessTimeController.m; sourceTree = "<group>"; };
 		02E629B710FA48130000BEA2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		02E629C910FA4A880000BEA2 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -116,6 +119,15 @@
 				0271D55810F78C4700F92A92 /* BTBlackListWindowController.m */,
 			);
 			name = "Window Controllers";
+			sourceTree = "<group>";
+		};
+		0298C8471121DB2C009CD69B /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				0298C84A1121DB53009CD69B /* BTBusinessTimeController.h */,
+				0298C84B1121DB53009CD69B /* BTBusinessTimeController.m */,
+			);
+			name = Control;
 			sourceTree = "<group>";
 		};
 		02C9B10C10F79DA400E24789 /* Model */ = {
@@ -179,6 +191,7 @@
 		29B97314FDCFA39411CA2CEA /* BusinessTime */ = {
 			isa = PBXGroup;
 			children = (
+				0298C8471121DB2C009CD69B /* Control */,
 				02E44EE610FD02D900D128F9 /* Authentication */,
 				0249233A10F83B20004E858C /* Hosts */,
 				02C9B10C10F79DA400E24789 /* Model */,
@@ -292,6 +305,7 @@
 				0249234E10F83E83004E858C /* FTHost.m in Sources */,
 				0249235710F840B0004E858C /* BTModel.m in Sources */,
 				023C33DE10FD73AB00621984 /* NSFileManagerAdditions.m in Sources */,
+				0298C84C1121DB53009CD69B /* BTBusinessTimeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

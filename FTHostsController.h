@@ -1,5 +1,5 @@
 //
-//  14HostsController.h
+//  FTHostsController.h
 //  BusinessTime
 //
 //  Created by Sam Mcdonald on 1/8/10.

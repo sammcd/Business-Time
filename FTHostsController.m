@@ -1,5 +1,5 @@
 //
-//  14HostsController.m
+//  FTHostsController.m
 //  BusinessTime
 //
 //  Created by Sam Mcdonald on 1/8/10.
@@ -23,7 +23,7 @@
     }
     return self;
 }
-
+ 
 - (void)dealloc {
     [uniqueName release];
     [super dealloc];
@@ -37,7 +37,7 @@
 
 
 - (NSString*)readHostsFile {
-    return [NSString stringWithContentsOfFile:@"/Users/sammcd/Desktop/hosts" encoding:NSASCIIStringEncoding error:NULL];
+    return [NSString stringWithContentsOfFile:@"/etc/hosts" encoding:NSASCIIStringEncoding error:NULL];
 }
 
 - (void)writeArrayToHosts:(NSArray*)arrayToWrite {
@@ -116,6 +116,7 @@
     afterNewContent.location = indexToAdd;
     afterNewContent.length = [hostsArray count] - indexToAdd;
     
+    // Create strings for before the content, the content, and after the content. Then Combine them
     NSString* beginingString = [[hostsArray subarrayWithRange:beforeNewContent] componentsJoinedByString:@"\n"];
     NSString* stringWithContent = [addedContent componentsJoinedByString:@"\n"];
     NSString* endingString = [[hostsArray subarrayWithRange:afterNewContent] componentsJoinedByString:@"\n"];
@@ -136,62 +137,7 @@
 }
 
 - (void)removeHostsFromFile {
-    NSString*           sectionStart;
-    NSString*           sectionEnd;
-    NSString*           hostsString;
-    NSMutableArray*     hostsArray;
-    int                 startLine  = -1;
-    int                 stopLine = -1;
-    int                 indexToAdd = 0;
-    
-    hostsArray = [[NSMutableArray alloc] initWithArray:[[self readHostsFile] componentsSeparatedByString:@"\n"]];
-    
-    sectionStart = [NSString stringWithFormat:@"# %@ START",uniqueName];
-    sectionEnd = [NSString stringWithFormat:@"# %@ END",uniqueName];
-    
-    
-    // Loop through the array looking for the line end and beginning.
-    int i;
-    for (i = 0; i < [hostsArray count]; i++ ) {
-        NSString* line = [hostsArray objectAtIndex:i];
-        if ( [line hasSuffix:sectionStart] ) {
-            startLine = i;
-            break;
-        }
-    }
-    
-    for (i = 0; i < [hostsArray count]; i++ ) {
-        NSString* line = [hostsArray objectAtIndex:i];
-        if ( [line hasSuffix:sectionEnd] ) {
-            stopLine = i;
-            break;
-        }
-    }
-    
-    
-    if ( startLine == -1 ) {
-        // There is no section so create it.
-        [hostsArray addObject:[NSString stringWithFormat:@"%@",sectionStart]];
-        indexToAdd = [hostsArray count];
-        [hostsArray addObject:[NSString stringWithFormat:@"%@",sectionEnd]];
-        
-        
-    } else {
-        // There is a section so play with it.
-        NSRange removeRange;
-        removeRange.location = startLine + 1;
-        removeRange.length = stopLine - removeRange.location;
-        [hostsArray removeObjectsInRange:removeRange];
-        indexToAdd = startLine + 1;
-    }
-    
-    // Bring array back to string.
-    hostsString = [hostsArray componentsJoinedByString:@"\n"];
-    
-    NSError* fileError;
-    NSString* tmpPath = [[NSFileManager defaultManager] newTmpFilePath];
-    [hostsString writeToFile:tmpPath atomically:YES encoding:NSASCIIStringEncoding error:&fileError];
-    [[NSFileManager defaultManager] authorizedMovePath:tmpPath toPath:@"/etc/hosts"];
+    [self writeArrayToHosts:[NSArray array]];
     
 }
 
@@ -200,18 +146,6 @@
     uniqueName = [[NSString alloc] initWithString:aName];
     [oldName release];
 }
-
-
-- (void)loadHosts {
- 
-    // Load file
-    
-    // Find section
-    
-    // Load from section or set a flag that there aren't any to load
-}
-
-
 
 
 
@@ -232,7 +166,6 @@
         
         [hosts addObject:aHost];  
     }
-
 }
 
 

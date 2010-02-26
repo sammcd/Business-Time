@@ -27,8 +27,7 @@
     [statusItem setTitle:@"BT"];
     [statusItem setHighlightMode:YES];
     businessTimeController = [[BTBusinessTimeController alloc] init];
-    
-    businessTime = NO;
+        
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification*)notification {
@@ -37,11 +36,10 @@
     NSString* appFile = [saveDirectory stringByAppendingPathComponent:@"BTSave"];
 
     [NSKeyedUnarchiver unarchiveObjectWithFile:appFile];
-    
-    [[[BTModel sharedModel] blackListModel] enableFilters];
-    [FTHostsController flushDNS];
-    
+        
+    [businessTimeController startBusinessTime];	
 }
+
 
 - (void)applicationWillTerminate:(NSNotification *)application {
 
@@ -51,20 +49,22 @@
     
     // Since the object is a singleton that responds to this properly, this will work
     [NSKeyedArchiver archiveRootObject:sharedModel toFile:appFile];
-    
+    [[NSUserDefaults standardUserDefaults] setObject:sharedModel forKey:@"sharedModel"];
     [[[BTModel sharedModel] blackListModel] disableFilters];
+    
+    // an extra flush dns call 
+    // our flush dns method isn't ideal, it seems to only work if a connection is not 
+    // currently in progress.
+    // We should move to using apple's firewall to fix this need.
     [FTHostsController flushDNS];
 }
 
 
-
 - (NSString *)applicationSupportFolder {
-	
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
     return [basePath stringByAppendingPathComponent:@"BusinessTime"];
 }
-
 
 
 - (void)dealloc {
@@ -79,20 +79,13 @@
 }
 
 - (IBAction)toggleBusinessTime:(id)sender {
+    [businessTimeController toggleBusinessTime];
     
-    if ( !businessTime ) {
-        NSLog(@"stopping Business Time: %d", businessTime);
-        [businessTimeController stopBusinessTime];
-        businessTime = YES;
+    if ( [businessTimeController isBusinessTime] ) 
+        [businessTimeButton setTitle:@"Take a break"];
+    else 
         [businessTimeButton setTitle:@"It's Business Time"];
 
-    } else {
-        NSLog(@"Starting business Time: %d", businessTime);
-        [businessTimeController startBusinessTime];
-        businessTime = NO;
-        [businessTimeButton setTitle:@"Take a break"];
-
-    }
 }
 
 
@@ -100,6 +93,7 @@
     if ( blackListWindowController == nil ) {
         blackListWindowController = [[BTBlackListWindowController alloc] init];
     }
+    [NSApp activateIgnoringOtherApps:YES];
     [[blackListWindowController window] makeKeyAndOrderFront:self];
     
 }

@@ -11,12 +11,16 @@
 
 @interface BTBusinessTimeController : NSObject {
     BTStatusWindowController* statusWindowController;
+    
+    BOOL isBusinessTime;
 }
 
 
 - (void)startBusinessTime;
-
 - (void)stopBusinessTime;
+- (void)toggleBusinessTime;
+
+- (BOOL)isBusinessTime;
 
 
 @end

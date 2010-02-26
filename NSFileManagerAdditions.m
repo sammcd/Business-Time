@@ -4,7 +4,6 @@
 //
 
 #import "NSFileManagerAdditions.h"
-//#import "NSApplicationAdditions.h"
 #import <Carbon/Carbon.h>
 #import <Security/Security.h>
 #import "stdlib.h"

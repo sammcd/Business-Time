@@ -13,15 +13,24 @@
 
 @implementation BTBusinessTimeController
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        isBusinessTime = NO;
+    }
+    return self;
+}
+
 - (void)stopBusinessTime {
     BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
     
     statusWindowController = [[BTStatusWindowController alloc] init];
-    [[statusWindowController window] makeKeyAndOrderFront:self];
+    [[statusWindowController window] makeKeyAndOrderFront:nil];
     [statusWindowController startTimer];
     
     // Disable the host filtering.
     [blackListModel disableFilters];
+    isBusinessTime = NO;
 }
 
 - (void)startBusinessTime {
@@ -32,7 +41,20 @@
     }
     
     [blackListModel enableFilters];
+    isBusinessTime = YES;
+}
+
+- (void)toggleBusinessTime {
+    if ( isBusinessTime ) 
+        [self stopBusinessTime];
+    else 
+        [self startBusinessTime];
     
 }
+
+- (BOOL)isBusinessTime {
+    return isBusinessTime;
+}
+
 
 @end

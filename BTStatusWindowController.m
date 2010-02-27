@@ -13,20 +13,34 @@
 
 
 - (id)init {
-    
-    NSRect screenRect = [[NSScreen mainScreen] frame];
-    
     // Create a window to place in the top right of the screen
     NSRect windowRect;
+    NSRect screenRect = [[NSScreen mainScreen] frame];
+
     windowRect.size.width = 170;
     windowRect.size.height = 60;
     windowRect.origin.x = screenRect.size.width - windowRect.size.width - 20;
-    windowRect.origin.y = screenRect.size.height - windowRect.size.height - 40;    
+    windowRect.origin.y = screenRect.size.height - windowRect.size.height - 40;  
     
-    NSWindow* window = [[NSWindow alloc] initWithContentRect:windowRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+    NSWindow* window = [[NSWindow alloc] initWithContentRect:windowRect 
+                                                   styleMask:NSBorderlessWindowMask 
+                                                     backing:NSBackingStoreBuffered 
+                                                       defer:NO];
+    
+    self = [super initWithWindow:window];
+    [self windowDidLoad];
+    if (self) {
+
+    }
+    return self;
+}
+
+- (void)windowDidLoad {
+    NSLog(@"window did load");
     
     NSColor* backgroundColor = [NSColor colorWithCalibratedWhite:0.0 alpha:.6];
     
+    NSWindow* window = [self window];
     [window setOpaque:NO];
     [window setBackgroundColor:backgroundColor];
     [window setLevel	:NSDockWindowLevel];
@@ -35,28 +49,41 @@
     // Add a label to the window
     timeTextField = [[NSTextField alloc] init];
     [[window contentView] addSubview:timeTextField];
-    [timeTextField setFrame:[[window contentView] bounds]];
-    [timeTextField setStringValue:@"0:00"];
-    [timeTextField setNeedsDisplay];
-    [timeTextField setBackgroundColor:backgroundColor];
-    [timeTextField setBordered:NO];
     [timeTextField setFont:[NSFont labelFontOfSize:35.0]];
-    [timeTextField setEditable:NO];
-
+    [timeTextField setStringValue:@"0:00"];
     
-    self = [super initWithWindow:window];
-    if (self) {
-
-    }
-    return self;
-}
+    // Set width to width of window, set height to sizeToFit.
+    [timeTextField sizeToFit];
+    NSRect fitRect = [timeTextField bounds];
+    NSRect windowRect = [[window contentView] frame];
+    NSRect timeTextFieldRect;
+    timeTextFieldRect.origin.x = fitRect.origin.x;
+    timeTextFieldRect.origin.y = fitRect.origin.y + 5; // Add padding to bottom
+    timeTextFieldRect.size.width = windowRect.size.width;
+    timeTextFieldRect.size.height = fitRect.size.height;
+    
+    [timeTextField setFrame:timeTextFieldRect];
+    
+    [timeTextField setAutoresizingMask:NSViewMinXMargin | NSViewWidthSizable | NSViewMaxXMargin |
+     NSViewMinYMargin | NSViewMaxYMargin ];
+    
+    [timeTextField setAlignment:NSCenterTextAlignment];
+    [timeTextField setNeedsDisplay];
+    [timeTextField setBackgroundColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.0]];
+    [timeTextField setTextColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.9]];
+    [timeTextField setBordered:NO];
+    [timeTextField setEditable:NO];
+}  
 
 - (void)dealloc {
     [timeTextField release];
+    [[self window] release];
     
     if (timeStarted != nil) {
         [timeStarted release];
     }
+    
+    [[self window] release];
     
     [super dealloc];
 }

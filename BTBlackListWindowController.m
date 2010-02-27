@@ -27,18 +27,18 @@
 
 
 - (IBAction)addItem:(id)sender {
-    [blackList addSite:@"New Site"];
+    [blackList addSite:@"NewSite.com"];
     [tableView reloadData];
 }
 
 
 - (IBAction)removeItem:(id)sender {
-    [[blackList siteList] removeObjectAtIndex:[tableView selectedRow]];
-    [tableView reloadData];
+    [self removeSelectedItem];
 }
 
-- (IBAction)applyChanges:(id)sender {
-    // Actually update a black list.
+- (void)removeSelectedItem {
+    [[blackList siteList] removeObjectAtIndex:[tableView selectedRow]];
+    [tableView reloadData];    
 }
 
 - (id)tableView:(NSTableView *)aTableView

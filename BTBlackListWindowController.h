@@ -12,14 +12,13 @@
 
 @interface BTBlackListWindowController : NSWindowController {
     BTBlackListModel*    blackList;
-    
     IBOutlet NSTableView* tableView;
     
 }
 
 - (IBAction)addItem:(id)sender;
 - (IBAction)removeItem:(id)sender;
-- (IBAction)applyChanges:(id)sender;
 
+- (void)removeSelectedItem;
 
 @end

@@ -54,7 +54,7 @@
 				<string key="NSWindowRect">{{196, 219}, {482, 291}}</string>
 				<int key="NSWTFlags">544735232</int>
 				<string key="NSWindowTitle">Black List</string>
-				<string key="NSWindowClass">NSWindow</string>
+				<string key="NSWindowClass">BTBlackListWindow</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<object class="NSView" key="NSWindowView" id="1006">
@@ -233,30 +233,6 @@
 										<int key="NSPeriodicInterval">25</int>
 									</object>
 								</object>
-								<object class="BWAnchoredButton" id="162978512">
-									<reference key="NSNextResponder" ref="513864569"/>
-									<int key="NSvFlags">268</int>
-									<string key="NSFrame">{{30, -1}, {32, 24}}</string>
-									<reference key="NSSuperview" ref="513864569"/>
-									<bool key="NSEnabled">YES</bool>
-									<object class="BWAnchoredButtonCell" key="NSCell" id="406040757">
-										<int key="NSCellFlags">67239424</int>
-										<int key="NSCellFlags2">134348800</int>
-										<string key="NSContents"/>
-										<reference key="NSSupport" ref="26"/>
-										<reference key="NSControlView" ref="162978512"/>
-										<int key="NSButtonFlags">-2033434369</int>
-										<int key="NSButtonFlags2">163</int>
-										<object class="NSCustomResource" key="NSNormalImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">NSRemoveTemplate</string>
-										</object>
-										<string key="NSAlternateContents"/>
-										<string key="NSKeyEquivalent"/>
-										<int key="NSPeriodicDelay">200</int>
-										<int key="NSPeriodicInterval">25</int>
-									</object>
-								</object>
 							</object>
 							<string key="NSFrame">{{1, 0}, {481, 23}}</string>
 							<reference key="NSSuperview" ref="1006"/>
@@ -276,14 +252,6 @@
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">removeItem:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="162978512"/>
-					</object>
-					<int key="connectionID">31</int>
-				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">window</string>
@@ -315,6 +283,14 @@
 						<reference key="destination" ref="926097578"/>
 					</object>
 					<int key="connectionID">41</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">blackListWindowController</string>
+						<reference key="source" ref="1005"/>
+						<reference key="destination" ref="1001"/>
+					</object>
+					<int key="connectionID">46</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -413,7 +389,6 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="861144948"/>
-							<reference ref="162978512"/>
 						</object>
 						<reference key="parent" ref="1006"/>
 					</object>
@@ -430,20 +405,6 @@
 						<int key="objectID">23</int>
 						<reference key="object" ref="304318619"/>
 						<reference key="parent" ref="861144948"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">24</int>
-						<reference key="object" ref="162978512"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="406040757"/>
-						</object>
-						<reference key="parent" ref="513864569"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">25</int>
-						<reference key="object" ref="406040757"/>
-						<reference key="parent" ref="162978512"/>
 					</object>
 				</object>
 			</object>
@@ -462,8 +423,6 @@
 					<string>2.IBPluginDependency</string>
 					<string>22.IBPluginDependency</string>
 					<string>23.IBPluginDependency</string>
-					<string>24.IBPluginDependency</string>
-					<string>25.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
@@ -481,8 +440,6 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -508,11 +465,23 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">45</int>
+			<int key="maxID">46</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">BTBlackListWindow</string>
+					<string key="superclassName">NSWindow</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">blackListWindowController</string>
+						<string key="NS.object.0">BTBlackListWindowController</string>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">BTBlackListWindow.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">BTBlackListWindowController</string>
 					<string key="superclassName">NSWindowController</string>
@@ -521,12 +490,10 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addItem:</string>
-							<string>applyChanges:</string>
 							<string>removeItem:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>

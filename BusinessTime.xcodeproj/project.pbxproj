@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0206DEBB1139711A00B1A429 /* BTBlackListWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0206DEBA1139711A00B1A429 /* BTBlackListWindow.m */; };
 		023C33DE10FD73AB00621984 /* NSFileManagerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 023C33DD10FD73AB00621984 /* NSFileManagerAdditions.m */; };
 		0249231F10F83943004E858C /* BTBlackListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249231E10F83943004E858C /* BTBlackListModel.m */; };
 		0249233D10F83B32004E858C /* FTHostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249233C10F83B32004E858C /* FTHostsController.m */; };
@@ -43,6 +44,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0206DEB91139711A00B1A429 /* BTBlackListWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlackListWindow.h; sourceTree = "<group>"; };
+		0206DEBA1139711A00B1A429 /* BTBlackListWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBlackListWindow.m; sourceTree = "<group>"; };
 		023C33DC10FD73AB00621984 /* NSFileManagerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManagerAdditions.h; sourceTree = "<group>"; };
 		023C33DD10FD73AB00621984 /* NSFileManagerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerAdditions.m; sourceTree = "<group>"; };
 		0249231D10F83943004E858C /* BTBlackListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlackListModel.h; sourceTree = "<group>"; };
@@ -94,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0206DEB61139710300B1A429 /* NSWindow Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				0206DEB91139711A00B1A429 /* BTBlackListWindow.h */,
+				0206DEBA1139711A00B1A429 /* BTBlackListWindow.m */,
+			);
+			name = "NSWindow Subclasses";
+			sourceTree = "<group>";
+		};
 		0249233A10F83B20004E858C /* Hosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +203,7 @@
 				0249233A10F83B20004E858C /* Hosts */,
 				02C9B10C10F79DA400E24789 /* Model */,
 				0279F10E10F6763600542AB3 /* Window Controllers */,
+				0206DEB61139710300B1A429 /* NSWindow Subclasses */,
 				080E96DDFE201D6D7F000001 /* Application */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -300,6 +313,7 @@
 				0249235710F840B0004E858C /* BTModel.m in Sources */,
 				023C33DE10FD73AB00621984 /* NSFileManagerAdditions.m in Sources */,
 				0298C84C1121DB53009CD69B /* BTBusinessTimeController.m in Sources */,
+				0206DEBB1139711A00B1A429 /* BTBlackListWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

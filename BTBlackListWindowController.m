@@ -27,8 +27,13 @@
 
 
 - (IBAction)addItem:(id)sender {
+    NSInteger newRowNumber;
+    
     [blackList addSite:@"NewSite.com"];
     [tableView reloadData];
+    
+    newRowNumber = [tableView numberOfRows] - 1;
+    [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:newRowNumber] byExtendingSelection:NO];    
 }
 
 
@@ -37,8 +42,12 @@
 }
 
 - (void)removeSelectedItem {
+    NSInteger newRowNumber;
+    
     [[blackList siteList] removeObjectAtIndex:[tableView selectedRow]];
     [tableView reloadData];    
+    newRowNumber = [tableView numberOfRows] - 1;
+    [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:newRowNumber] byExtendingSelection:NO];
 }
 
 - (id)tableView:(NSTableView *)aTableView
@@ -54,8 +63,12 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
    forTableColumn:(NSTableColumn *)aTableColumn
               row:(int)rowIndex
 {
+    // Strip "http://" from new object.
+    // This does not work with hosts
+    NSString* newString = [anObject stringByReplacingOccurrencesOfString:@"http://" withString:@""]; 
+    
     [[blackList siteList] removeObjectAtIndex:rowIndex];
-    [[blackList siteList] insertObject:anObject atIndex:rowIndex];
+    [[blackList siteList] insertObject:newString atIndex:rowIndex];
     
 }
 

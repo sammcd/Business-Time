@@ -20,5 +20,4 @@
     [blackListWindowController removeSelectedItem];
 }
 
-
 @end

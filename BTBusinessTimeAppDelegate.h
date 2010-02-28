@@ -28,7 +28,9 @@
 
 /// Application support folder.
 - (NSString *)applicationSupportFolder;
+- (NSString *)dataStorePath;
 
+- (void)createDefaultDataStoreIfNeeded;
 
 - (IBAction)toggleBusinessTime:(id)sender;
 - (IBAction)editBlackList:(id)sender;

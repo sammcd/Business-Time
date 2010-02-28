@@ -19,6 +19,17 @@
 @synthesize window;
 
 
+- (void)dealloc {
+    if ( statusWindowController != nil ) {
+        [statusWindowController release];
+    }
+    if ( blackListWindowController != nil ) {
+        [blackListWindowController release];
+    }
+    
+    [super dealloc];	
+}
+
 - (void)awakeFromNib {
     
     // Create status bar.
@@ -31,12 +42,13 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification*)notification {
-
-    NSString* saveDirectory = [self applicationSupportFolder];
-    NSString* appFile = [saveDirectory stringByAppendingPathComponent:@"BTSave"];
-
+    NSString* appFile = [self dataStorePath];
+    
+    // Currently the route of unarchiving works, but it is not 
+    // the best route. Archiving with a singleton was a bad idea :(
     [NSKeyedUnarchiver unarchiveObjectWithFile:appFile];
-        
+    
+    [self createDefaultDataStoreIfNeeded];
     [businessTimeController startBusinessTime];	
 }
 
@@ -44,8 +56,7 @@
 - (void)applicationWillTerminate:(NSNotification *)application {
 
     BTModel* sharedModel = [BTModel sharedModel];
-    NSString* saveDirectory = [self applicationSupportFolder];
-    NSString* appFile = [saveDirectory stringByAppendingPathComponent:@"BTSave"];
+    NSString* appFile = [self dataStorePath];
     
     // Since the object is a singleton that responds to this properly, this will work
     [NSKeyedArchiver archiveRootObject:sharedModel toFile:appFile];
@@ -59,6 +70,27 @@
     [FTHostsController flushDNS];
 }
 
+- (void)createDefaultDataStoreIfNeeded {
+    NSFileManager*      fileManager = [NSFileManager defaultManager];
+    BTModel*            sharedModel = [BTModel sharedModel];
+    BTBlackListModel*   blackList = [sharedModel blackListModel];
+    
+    if ( ![fileManager fileExistsAtPath:[self dataStorePath]] ) {        
+        [blackList addSite:@"www.google.com"];
+        [blackList addSite:@"google.com"];
+        [blackList addSite:@"twitter.com"];
+    }
+    
+    // Now create the folder in applicaiton support if it doesn't exist.
+    if ( ![fileManager fileExistsAtPath:[self applicationSupportFolder]] ) {
+        NSError* error;
+        
+        [fileManager createDirectoryAtPath:[self applicationSupportFolder] 
+               withIntermediateDirectories:YES
+                                attributes:nil
+                                     error:&error];
+    }
+}
 
 - (NSString *)applicationSupportFolder {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
@@ -66,16 +98,8 @@
     return [basePath stringByAppendingPathComponent:@"BusinessTime"];
 }
 
-
-- (void)dealloc {
-    if ( statusWindowController != nil ) {
-        [statusWindowController release];
-    }
-    if ( blackListWindowController != nil ) {
-        [blackListWindowController release];
-    }
-    
-    [super dealloc];	
+- (NSString *)dataStorePath {
+    return [[self applicationSupportFolder] stringByAppendingPathComponent:@"BTSave"];
 }
 
 - (IBAction)toggleBusinessTime:(id)sender {
@@ -85,7 +109,6 @@
         [businessTimeButton setTitle:@"Take a break"];
     else 
         [businessTimeButton setTitle:@"It's Business Time"];
-
 }
 
 

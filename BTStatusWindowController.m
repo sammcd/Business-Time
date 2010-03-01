@@ -11,7 +11,7 @@
 
 @implementation BTStatusWindowController
 
-
+#pragma mark Overriding NSObject
 - (id)init {
     // Create a window to place in the top right of the screen
     NSRect windowRect;
@@ -35,10 +35,23 @@
     return self;
 }
 
-- (void)windowDidLoad {
-    NSLog(@"window did load");
+- (void)dealloc {
+    [timeTextField release];
+    [[self window] release];
     
-    NSColor* backgroundColor = [NSColor colorWithCalibratedWhite:0.0 alpha:.6];
+    if (timeStarted != nil) {
+        [timeStarted release];
+    }
+    
+    [[self window] release];
+    
+    [super dealloc];
+}
+
+#pragma mark Window Delegate
+- (void)windowDidLoad {
+    
+    NSColor* backgroundColor = [NSColor colorWithCalibratedWhite:0.0 alpha:.7];
     
     NSWindow* window = [self window];
     [window setOpaque:NO];
@@ -49,7 +62,7 @@
     // Add a label to the window
     timeTextField = [[NSTextField alloc] init];
     [[window contentView] addSubview:timeTextField];
-    [timeTextField setFont:[NSFont labelFontOfSize:35.0]];
+    [timeTextField setFont:[NSFont systemFontOfSize:35.0]];
     [timeTextField setStringValue:@"0:00"];
     
     // Set width to width of window, set height to sizeToFit.
@@ -75,25 +88,7 @@
     [timeTextField setEditable:NO];
 }  
 
-- (void)dealloc {
-    [timeTextField release];
-    [[self window] release];
-    
-    if (timeStarted != nil) {
-        [timeStarted release];
-    }
-    
-    [[self window] release];
-    
-    [super dealloc];
-}
-
-- (void)awakeFromNib {
-    
-    
-}
-
-
+#pragma mark Timing
 - (void)startTimer {
     NSTimer*         timer;
     

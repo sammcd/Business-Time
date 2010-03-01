@@ -13,6 +13,7 @@
 
 @implementation BTBlackListWindowController
 
+#pragma mark Overriding NSObject
 - (id)init {
     self = [super initWithWindowNibName:@"BlackListWindow"];
     if ( self ) {
@@ -25,7 +26,7 @@
      [super dealloc];
  }
 
-
+#pragma mark Adding and removing items
 - (IBAction)addItem:(id)sender {
     NSInteger newRowNumber;
     
@@ -52,6 +53,7 @@
     [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:newRowNumber] byExtendingSelection:NO];
 }
 
+#pragma mark TableView delegate methods.
 - (id)tableView:(NSTableView *)aTableView
 objectValueForTableColumn:(NSTableColumn *)aTableColumn
             row:(int)rowIndex

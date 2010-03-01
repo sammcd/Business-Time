@@ -6,6 +6,9 @@
 //  Copyright 2010 141312 LLC. All rights reserved.
 //
 
+/// @class BTModel
+/// @brief Singleton Model for application.
+
 #import <Cocoa/Cocoa.h>
 @class BTBlackListModel;
 
@@ -14,7 +17,7 @@
     BTBlackListModel*   blackListModel;
 }
 
-/// Return the shared model
+/// @brief Return the shared model
 + (BTModel*)sharedModel;
 
 /// @return The black list model

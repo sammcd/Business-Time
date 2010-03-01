@@ -14,6 +14,7 @@ static BTModel *sharedModel = nil;
 
 @implementation BTModel
 
+#pragma mark Overriding NSObject
 - (id)init {
     self = [super init];
     if ( self ) {
@@ -22,7 +23,12 @@ static BTModel *sharedModel = nil;
     return self;
 }
 
+- (void)dealloc {
+    [blackListModel release];
+    [super dealloc];
+}
 
+#pragma mark Archiving
 - (id)initWithCoder:(NSCoder*)coder {
     if ( sharedModel == nil ) {
         [BTModel  sharedModel];
@@ -44,21 +50,16 @@ static BTModel *sharedModel = nil;
     [coder encodeObject:@"0.1"  forKey:@"BTMVersion"];
 }
 
-
+#pragma mark Accessing Black List
 - (BTBlackListModel*)blackListModel {
     return blackListModel;
 }
 
 
-- (void)dealloc {
-    [blackListModel release];
-    [super dealloc];
-}
 
-//////////////////////////
-// Singelton Code
-//////////////////////////
 
+// --- Singelton Code
+#pragma mark Singelton Support
 + (BTModel*)sharedModel
 {
     @synchronized(self) {

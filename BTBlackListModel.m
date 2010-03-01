@@ -12,6 +12,7 @@
 
 @implementation BTBlackListModel
 
+#pragma mark Overriding NSObject
 - (id)init {
     self = [super init];
     if (self) {
@@ -28,6 +29,7 @@
     [super dealloc];
 }
 
+#pragma mark Archiving
 - (id)initWithCoder:(NSCoder*)coder {
     self = [super init];
     if ( self) {
@@ -43,7 +45,7 @@
     
 }
 
-
+#pragma mark Managing Site List
 - (NSMutableArray*)siteList {
     return siteList;
 }
@@ -53,7 +55,11 @@
 }
 
 - (void)removeSite:(NSString*)aSite {
-    [siteList removeObject:aSite];
+    for (NSString* aString in siteList) {
+        if ( [aString caseInsensitiveCompare:aSite] ) {
+            [siteList removeObject:aString];
+        }
+    }
 }
 
 - (NSInteger)count {
@@ -61,6 +67,7 @@
 }
 
 
+#pragma mark Enabling/Disabling Filter
 - (void)enableFilters {
 
     for ( NSString* site in siteList ) {

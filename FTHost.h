@@ -6,6 +6,9 @@
 //  Copyright 2010 141312 LLC. All rights reserved.
 //
 
+/// @class FTHost
+/// @brief Object representing a record in /etc/hosts
+
 #import <Cocoa/Cocoa.h>
 
 

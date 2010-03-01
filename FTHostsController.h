@@ -6,8 +6,11 @@
 //  Copyright 2010 141312 LLC. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+/// @class FTHostsController
+/// Class to write new records to /etc/hosts
+/// Depends on NSFileManagerAdditions.
 
+#import <Cocoa/Cocoa.h>
 
 @interface FTHostsController : NSObject {
     NSString*       uniqueName;
@@ -15,16 +18,23 @@
     
 }
 
+/// @brief Calls dscacheutil -flushcache To allow new hosts to set. 
 + (void)flushDNS;
+
+/// @return Returns the path to the hosts file.
+- (NSString*)hostsFilePath;
+
+/// @brief Write hosts to /etc/hosts.
 - (void)writeHostsToFile;
+
+/// @brief Remove our hosts section from /etc/hosts
 - (void)removeHostsFromFile;
 
-/// This is the unique name that will identify your apps section of the hosts file defaults to 'HostsController'
+/// @brief This is the unique name that will identify your apps section of the hosts file defaults to 'HostsController'
 - (void)setUniqueName:(NSString*)aName;
 
-/// Add a host to the list.
+/// @brief Add a host to the list.
 - (void)addHostWithName:(NSString*)aName ip:(NSString*)ip;
 
-- (NSString*)readHostsFile;
 
 @end

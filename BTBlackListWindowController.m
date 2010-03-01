@@ -43,10 +43,12 @@
 
 - (void)removeSelectedItem {
     NSInteger newRowNumber;
-    
+    newRowNumber = [tableView selectedRow] - 1;
+
     [[blackList siteList] removeObjectAtIndex:[tableView selectedRow]];
     [tableView reloadData];    
-    newRowNumber = [tableView numberOfRows] - 1;
+    
+    
     [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:newRowNumber] byExtendingSelection:NO];
 }
 

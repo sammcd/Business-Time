@@ -15,6 +15,7 @@
 
 @implementation FTHostsController
 
+#pragma mark Overriding NSObject
 - (id)init {
     self = [super init];
     if ( self ) {
@@ -26,17 +27,20 @@
  
 - (void)dealloc {
     [uniqueName release];
+    [hosts release];
     [super dealloc];
 }
 
+
+#pragma mark Class Methods
 + (void)flushDNS {
     // A poor man's dns flush.
     NSArray* arguments = [NSArray arrayWithObjects:@"-flushcache",nil];
     [NSTask launchedTaskWithLaunchPath:@"/usr/bin/dscacheutil" arguments:arguments];
 }
 
-
-- (NSString*)readHostsFile {
+#pragma mark Write Hosts to Path
+- (NSString*)hostsFilePath {
     return [NSString stringWithContentsOfFile:@"/etc/hosts" encoding:NSASCIIStringEncoding error:NULL];
 }
 
@@ -50,7 +54,7 @@
     int                 stopLine = -1;
     int                 indexToAdd = 0;
     
-    hostsArray = [[NSMutableArray alloc] initWithArray:[[self readHostsFile] componentsSeparatedByString:@"\n"]];
+    hostsArray = [[NSMutableArray alloc] initWithArray:[[self hostsFilePath] componentsSeparatedByString:@"\n"]];
     addedContent = [[NSMutableArray alloc] init];
     
     sectionStart = [NSString stringWithFormat:@"# %@ START",uniqueName];
@@ -141,6 +145,7 @@
     
 }
 
+#pragma mark Changing Name
 - (void)setUniqueName:(NSString*)aName {
     NSString* oldName = uniqueName;
     uniqueName = [[NSString alloc] initWithString:aName];
@@ -148,7 +153,7 @@
 }
 
 
-
+#pragma mark Adding Hosts
 - (void)addHostWithName:(NSString*)aName ip:(NSString*)ip {
     BOOL updated = NO;
     
@@ -165,6 +170,7 @@
         aHost.ip = ip;
         
         [hosts addObject:aHost];  
+        [aHost release];
     }
 }
 

@@ -21,6 +21,17 @@
     return self;
 }
 
+- (void)startBusinessTime {
+    BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
+    
+    if (statusWindowController != nil ) {
+        [[statusWindowController window] close];
+    }
+    
+    [blackListModel enableFilters];
+    isBusinessTime = YES;
+}
+
 - (void)stopBusinessTime {
     BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
     
@@ -31,17 +42,6 @@
     // Disable the host filtering.
     [blackListModel disableFilters];
     isBusinessTime = NO;
-}
-
-- (void)startBusinessTime {
-    BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
-    
-    if (statusWindowController != nil ) {
-        [[statusWindowController window] close];
-    }
-    
-    [blackListModel enableFilters];
-    isBusinessTime = YES;
 }
 
 - (void)toggleBusinessTime {

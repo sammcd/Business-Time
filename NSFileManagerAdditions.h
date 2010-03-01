@@ -2,6 +2,10 @@
 //  NSFileManagerAdditions.h
 //  TRKit
 //
+// Code pulled from:
+// http://www.cocoadev.com/index.pl?AuthenticatingNSFileManager
+//
+// Used for moving files.
 
 #import <Cocoa/Cocoa.h>
 

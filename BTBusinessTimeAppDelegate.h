@@ -11,7 +11,8 @@
 /// Controls Menu bar UI as well as Saving and Loading.
 
 #import <Cocoa/Cocoa.h>
-@class BTStatusWindowController, BTBlackListWindowController, BTBusinessTimeController;
+@class BTStatusWindowController, BTBlackListWindowController, BTBusinessTimeController,
+        BTTimeWorkedWindowController;
 
 @interface BTBusinessTimeAppDelegate : NSObject {
     NSWindow            *window;
@@ -21,6 +22,8 @@
     BOOL                            businessTime;
     BTStatusWindowController*       statusWindowController;
     BTBlackListWindowController*    blackListWindowController;
+    BTTimeWorkedWindowController*   timeWorkedWindowController;
+    
     BTBusinessTimeController*       businessTimeController;
     
     IBOutlet NSMenuItem*            businessTimeButton;
@@ -31,11 +34,15 @@
 /// @brief Turn business time off and on.
 - (IBAction)toggleBusinessTime:(id)sender;
 
+/// @brief Show how much time you have worked.
+- (IBAction)showTimeWorked:(id)sender;
+
 /// @brief Open black list editing window
 - (IBAction)editBlackList:(id)sender;
 
 /// @brief Quit program.
 - (IBAction)quit:(id)sender;
+
 
 /// @return Returns location of application support folder
 - (NSString *)applicationSupportFolder;

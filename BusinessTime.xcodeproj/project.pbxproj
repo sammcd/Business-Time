@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0206DEBB1139711A00B1A429 /* BTBlackListWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0206DEBA1139711A00B1A429 /* BTBlackListWindow.m */; };
+		021973BC113D64000023DD41 /* BTTimeWorkedWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021973BB113D64000023DD41 /* BTTimeWorkedWindowController.m */; };
+		021973BE113D645B0023DD41 /* TimeWorkedWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021973BD113D645B0023DD41 /* TimeWorkedWindow.xib */; };
 		023C33DE10FD73AB00621984 /* NSFileManagerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 023C33DD10FD73AB00621984 /* NSFileManagerAdditions.m */; };
 		0249231F10F83943004E858C /* BTBlackListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249231E10F83943004E858C /* BTBlackListModel.m */; };
 		0249233D10F83B32004E858C /* FTHostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249233C10F83B32004E858C /* FTHostsController.m */; };
@@ -46,6 +48,9 @@
 /* Begin PBXFileReference section */
 		0206DEB91139711A00B1A429 /* BTBlackListWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlackListWindow.h; sourceTree = "<group>"; };
 		0206DEBA1139711A00B1A429 /* BTBlackListWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBlackListWindow.m; sourceTree = "<group>"; };
+		021973BA113D64000023DD41 /* BTTimeWorkedWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimeWorkedWindowController.h; sourceTree = "<group>"; };
+		021973BB113D64000023DD41 /* BTTimeWorkedWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimeWorkedWindowController.m; sourceTree = "<group>"; };
+		021973BD113D645B0023DD41 /* TimeWorkedWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeWorkedWindow.xib; sourceTree = "<group>"; };
 		023C33DC10FD73AB00621984 /* NSFileManagerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManagerAdditions.h; sourceTree = "<group>"; };
 		023C33DD10FD73AB00621984 /* NSFileManagerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerAdditions.m; sourceTree = "<group>"; };
 		0249231D10F83943004E858C /* BTBlackListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlackListModel.h; sourceTree = "<group>"; };
@@ -124,6 +129,8 @@
 				0279F16410F67A7000542AB3 /* BTStatusWindowController.m */,
 				0271D55710F78C4700F92A92 /* BTBlackListWindowController.h */,
 				0271D55810F78C4700F92A92 /* BTBlackListWindowController.m */,
+				021973BA113D64000023DD41 /* BTTimeWorkedWindowController.h */,
+				021973BB113D64000023DD41 /* BTTimeWorkedWindowController.m */,
 			);
 			name = "Window Controllers";
 			sourceTree = "<group>";
@@ -231,6 +238,7 @@
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 				0279F12510F676F400542AB3 /* MainWindow.xib */,
 				0271D55310F78C2700F92A92 /* BlackListWindow.xib */,
+				021973BD113D645B0023DD41 /* TimeWorkedWindow.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -293,6 +301,7 @@
 				0279F12610F676F400542AB3 /* MainWindow.xib in Resources */,
 				026932D910F6C7AD00257761 /* RedShirt.icns in Resources */,
 				0271D55410F78C2700F92A92 /* BlackListWindow.xib in Resources */,
+				021973BE113D645B0023DD41 /* TimeWorkedWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +323,7 @@
 				023C33DE10FD73AB00621984 /* NSFileManagerAdditions.m in Sources */,
 				0298C84C1121DB53009CD69B /* BTBusinessTimeController.m in Sources */,
 				0206DEBB1139711A00B1A429 /* BTBlackListWindow.m in Sources */,
+				021973BC113D64000023DD41 /* BTTimeWorkedWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

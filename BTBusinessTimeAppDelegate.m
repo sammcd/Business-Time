@@ -13,6 +13,7 @@
 #import "BTStatusWindowController.h"
 #import "BTBlackListWindowController.h"
 #import "BTBusinessTimeController.h"
+#import "BTTimeWorkedWindowController.h"
 
 @implementation BTBusinessTimeAppDelegate
 
@@ -29,6 +30,9 @@
     if ( businessTimeController != nil ) {
         [businessTimeController release];
     }
+    if ( timeWorkedWindowController != nil ) {
+        [timeWorkedWindowController release];
+    }
     
     [super dealloc];	
 }
@@ -41,6 +45,14 @@
         [businessTimeButton setTitle:@"Take a break"];
     else 
         [businessTimeButton setTitle:@"It's Business Time"];
+}
+
+- (IBAction)showTimeWorked:(id)sender {
+    if ( timeWorkedWindowController == nil ) {
+        timeWorkedWindowController = [[BTTimeWorkedWindowController alloc] init];
+    }
+    [NSApp activateIgnoringOtherApps:YES];
+    [[timeWorkedWindowController window] makeKeyAndOrderFront:self];
 }
 
 
@@ -56,6 +68,8 @@
 - (IBAction)quit:(id)sender {
     [NSApp terminate:self];
 }
+
+
 
 #pragma mark Saving/Loading
 - (void)createDefaultDataStoreIfNeeded {

@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0206DEBB1139711A00B1A429 /* BTBlackListWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 0206DEBA1139711A00B1A429 /* BTBlackListWindow.m */; };
+		0218CFCD113D891300104AC7 /* BTTimeInterval.m in Sources */ = {isa = PBXBuildFile; fileRef = 0218CFCC113D891300104AC7 /* BTTimeInterval.m */; };
+		0218CFE1113D8C5A00104AC7 /* BTDayOfWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0218CFE0113D8C5A00104AC7 /* BTDayOfWork.m */; };
 		021973BC113D64000023DD41 /* BTTimeWorkedWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021973BB113D64000023DD41 /* BTTimeWorkedWindowController.m */; };
 		021973BE113D645B0023DD41 /* TimeWorkedWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021973BD113D645B0023DD41 /* TimeWorkedWindow.xib */; };
+		021973CB113D67A80023DD41 /* BTTimeWorkedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 021973CA113D67A80023DD41 /* BTTimeWorkedModel.m */; };
 		023C33DE10FD73AB00621984 /* NSFileManagerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 023C33DD10FD73AB00621984 /* NSFileManagerAdditions.m */; };
 		0249231F10F83943004E858C /* BTBlackListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249231E10F83943004E858C /* BTBlackListModel.m */; };
 		0249233D10F83B32004E858C /* FTHostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0249233C10F83B32004E858C /* FTHostsController.m */; };
@@ -48,9 +51,15 @@
 /* Begin PBXFileReference section */
 		0206DEB91139711A00B1A429 /* BTBlackListWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlackListWindow.h; sourceTree = "<group>"; };
 		0206DEBA1139711A00B1A429 /* BTBlackListWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBlackListWindow.m; sourceTree = "<group>"; };
+		0218CFCB113D891300104AC7 /* BTTimeInterval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimeInterval.h; sourceTree = "<group>"; };
+		0218CFCC113D891300104AC7 /* BTTimeInterval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimeInterval.m; sourceTree = "<group>"; };
+		0218CFDF113D8C5A00104AC7 /* BTDayOfWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTDayOfWork.h; sourceTree = "<group>"; };
+		0218CFE0113D8C5A00104AC7 /* BTDayOfWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTDayOfWork.m; sourceTree = "<group>"; };
 		021973BA113D64000023DD41 /* BTTimeWorkedWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimeWorkedWindowController.h; sourceTree = "<group>"; };
 		021973BB113D64000023DD41 /* BTTimeWorkedWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimeWorkedWindowController.m; sourceTree = "<group>"; };
 		021973BD113D645B0023DD41 /* TimeWorkedWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeWorkedWindow.xib; sourceTree = "<group>"; };
+		021973C9113D67A80023DD41 /* BTTimeWorkedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimeWorkedModel.h; sourceTree = "<group>"; };
+		021973CA113D67A80023DD41 /* BTTimeWorkedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimeWorkedModel.m; sourceTree = "<group>"; };
 		023C33DC10FD73AB00621984 /* NSFileManagerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManagerAdditions.h; sourceTree = "<group>"; };
 		023C33DD10FD73AB00621984 /* NSFileManagerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerAdditions.m; sourceTree = "<group>"; };
 		0249231D10F83943004E858C /* BTBlackListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBlackListModel.h; sourceTree = "<group>"; };
@@ -111,6 +120,17 @@
 			name = "NSWindow Subclasses";
 			sourceTree = "<group>";
 		};
+		0218CFE2113D8CFA00104AC7 /* TimeWorked */ = {
+			isa = PBXGroup;
+			children = (
+				0218CFDF113D8C5A00104AC7 /* BTDayOfWork.h */,
+				0218CFE0113D8C5A00104AC7 /* BTDayOfWork.m */,
+				0218CFCB113D891300104AC7 /* BTTimeInterval.h */,
+				0218CFCC113D891300104AC7 /* BTTimeInterval.m */,
+			);
+			name = TimeWorked;
+			sourceTree = "<group>";
+		};
 		0249233A10F83B20004E858C /* Hosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +171,9 @@
 				0249231E10F83943004E858C /* BTBlackListModel.m */,
 				0249235510F840B0004E858C /* BTModel.h */,
 				0249235610F840B0004E858C /* BTModel.m */,
+				021973C9113D67A80023DD41 /* BTTimeWorkedModel.h */,
+				021973CA113D67A80023DD41 /* BTTimeWorkedModel.m */,
+				0218CFE2113D8CFA00104AC7 /* TimeWorked */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -324,6 +347,9 @@
 				0298C84C1121DB53009CD69B /* BTBusinessTimeController.m in Sources */,
 				0206DEBB1139711A00B1A429 /* BTBlackListWindow.m in Sources */,
 				021973BC113D64000023DD41 /* BTTimeWorkedWindowController.m in Sources */,
+				021973CB113D67A80023DD41 /* BTTimeWorkedModel.m in Sources */,
+				0218CFCD113D891300104AC7 /* BTTimeInterval.m in Sources */,
+				0218CFE1113D8C5A00104AC7 /* BTDayOfWork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

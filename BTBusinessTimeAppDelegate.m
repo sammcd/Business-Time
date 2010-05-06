@@ -95,17 +95,10 @@
     NSTimeInterval time = [businessTimeController timeOfCurrentSession];
         
     int minutes = (int)time / 60 % 60;
-    int seconds = (int)time % 60;
     int hours = (int)time / 60 / 60;
-    NSString* secondString;
     NSString* minuteString;
     NSString* hourString;
     
-    if ( seconds < 10 ) {
-        secondString = [NSString stringWithFormat:@"0%d",seconds];
-    } else {
-        secondString = [NSString stringWithFormat:@"%d",seconds];
-    }
     
     if ( minutes < 10 ) {
         minuteString = [NSString stringWithFormat:@"0%d",minutes];
@@ -113,15 +106,12 @@
         minuteString = [NSString stringWithFormat:@"%d",minutes];
     }
     
-    
-    if ( hours == 0 ) {
-        hourString = @"";
-    } else {
-        hourString = [NSString stringWithFormat:@"%d:",hours];
-    }
+
+    hourString = [NSString stringWithFormat:@"%d",hours];
+
         
     if ( [businessTimeController isBusinessTime] )
-        [statusItem setTitle:[NSString stringWithFormat:@"BT (%@%@:%@)",hourString, minuteString, secondString]];
+        [statusItem setTitle:[NSString stringWithFormat:@"BT (%@:%@)",hourString, minuteString]];
     else {
         [statusItem setTitle:@"BT"];
     }

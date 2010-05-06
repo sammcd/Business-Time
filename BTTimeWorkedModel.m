@@ -11,13 +11,35 @@
 
 @implementation BTTimeWorkedModel
 
+#pragma mark init and dealloc
+- (id)init {
+    self = [super init];
+    if ( self ) {
+        
+    }
+    return self;
+}
 
+- (void)dealloc {
+    
+    
+    [super dealloc];
+}
+
+
+#pragma mark Time
 - (NSTimeInterval)timeWorkedOnDate:(NSDate*)aDate {
+    
+    // Find today's day of work.
+    
     return 0.0;
 }
 
 - (void)addTimeInterval:(NSTimeInterval) startingOnDate:(NSDate*)aDate {
  
+    // Find proper day to add this to.
+    
+    
     return;
 }
 

@@ -13,6 +13,7 @@
 
 @implementation BTBusinessTimeController
 
+#pragma mark init and dealloc
 - (id)init {
     self = [super init];
     if (self) {
@@ -21,6 +22,7 @@
     return self;
 }
 
+#pragma mark Starting and stopping business time
 - (void)startBusinessTime {
     BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
     
@@ -52,6 +54,7 @@
     
 }
 
+#pragma mark Returning public variables.
 - (BOOL)isBusinessTime {
     return isBusinessTime;
 }

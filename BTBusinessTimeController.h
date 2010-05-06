@@ -16,12 +16,9 @@
 @interface BTBusinessTimeController : NSObject {
     BTStatusWindowController* statusWindowController;
     
-    BOOL isBusinessTime;
+    NSDate*         beginningOfSession;
+    BOOL            isBusinessTime;
 }
-
-/// @brief Initialize starting with Business Time stopped.
-- (id)init;
-
 
 /// @brief block access to black List
 - (void)startBusinessTime;
@@ -32,9 +29,11 @@
 /// @brief Toggle business time state.
 - (void)toggleBusinessTime;
 
-
 /// @return Returns boolean showing whether we are in business time.
 - (BOOL)isBusinessTime;
+
+/// @return Returns amount of time spent in current state (bussiness time or break time)
+- (NSTimeInterval)timeOfCurrentSession;
 
 
 @end

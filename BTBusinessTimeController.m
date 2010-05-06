@@ -13,22 +13,24 @@
 
 @implementation BTBusinessTimeController
 
-#pragma mark init and dealloc
 - (id)init {
     self = [super init];
     if (self) {
         isBusinessTime = NO;
+        beginningOfSession = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
     }
     return self;
 }
 
-#pragma mark Starting and stopping business time
 - (void)startBusinessTime {
     BTBlackListModel* blackListModel = [[BTModel sharedModel] blackListModel];
     
     if (statusWindowController != nil ) {
         [[statusWindowController window] close];
     }
+    
+    [beginningOfSession release];
+    beginningOfSession = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
     [blackListModel enableFilters];
     isBusinessTime = YES;
@@ -40,6 +42,9 @@
     statusWindowController = [[BTStatusWindowController alloc] init];
     [[statusWindowController window] makeKeyAndOrderFront:nil];
     [statusWindowController startTimer];
+    
+    [beginningOfSession release];
+    beginningOfSession = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
     
     // Disable the host filtering.
     [blackListModel disableFilters];
@@ -54,9 +59,14 @@
     
 }
 
-#pragma mark Returning public variables.
 - (BOOL)isBusinessTime {
     return isBusinessTime;
+}
+
+- (NSTimeInterval)timeOfCurrentSession {
+    NSLog(@"hello");
+    
+    return [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSinceDate:beginningOfSession];
 }
 
 

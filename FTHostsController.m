@@ -15,7 +15,7 @@
 
 @implementation FTHostsController
 
-#pragma mark init and dealloc
+#pragma mark Overriding NSObject
 - (id)init {
     self = [super init];
     if ( self ) {

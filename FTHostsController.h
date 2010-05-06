@@ -21,7 +21,6 @@
 /// @brief Calls dscacheutil -flushcache To allow new hosts to set. 
 + (void)flushDNS;
 
-
 /// @return Returns the path to the hosts file.
 - (NSString*)hostsFilePath;
 
@@ -30,7 +29,6 @@
 
 /// @brief Remove our hosts section from /etc/hosts
 - (void)removeHostsFromFile;
-
 
 /// @brief This is the unique name that will identify your apps section of the hosts file defaults to 'HostsController'
 - (void)setUniqueName:(NSString*)aName;

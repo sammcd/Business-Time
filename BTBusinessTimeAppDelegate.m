@@ -13,7 +13,6 @@
 #import "BTStatusWindowController.h"
 #import "BTBlackListWindowController.h"
 #import "BTBusinessTimeController.h"
-#import "BTTimeWorkedWindowController.h"
 
 @implementation BTBusinessTimeAppDelegate
 
@@ -30,14 +29,9 @@
     if ( businessTimeController != nil ) {
         [businessTimeController release];
     }
-    if ( timeWorkedWindowController != nil ) {
-        [timeWorkedWindowController release];
-    }
     
     [super dealloc];	
 }
-
-
 
 #pragma mark IBActions
 - (IBAction)toggleBusinessTime:(id)sender {
@@ -47,14 +41,6 @@
         [businessTimeButton setTitle:@"Take a break"];
     else 
         [businessTimeButton setTitle:@"It's Business Time"];
-}
-
-- (IBAction)showTimeWorked:(id)sender {
-    if ( timeWorkedWindowController == nil ) {
-        timeWorkedWindowController = [[BTTimeWorkedWindowController alloc] init];
-    }
-    [NSApp activateIgnoringOtherApps:YES];
-    [[timeWorkedWindowController window] makeKeyAndOrderFront:self];
 }
 
 
@@ -70,8 +56,6 @@
 - (IBAction)quit:(id)sender {
     [NSApp terminate:self];
 }
-
-
 
 #pragma mark Saving/Loading
 - (void)createDefaultDataStoreIfNeeded {
@@ -106,6 +90,44 @@
     return [[self applicationSupportFolder] stringByAppendingPathComponent:@"BTSave"];
 }
 
+#pragma mark Updating Title
+- (void) updateTitle {
+    NSTimeInterval time = [businessTimeController timeOfCurrentSession];
+        
+    int minutes = (int)time / 60 % 60;
+    int seconds = (int)time % 60;
+    int hours = (int)time / 60 / 60;
+    NSString* secondString;
+    NSString* minuteString;
+    NSString* hourString;
+    
+    if ( seconds < 10 ) {
+        secondString = [NSString stringWithFormat:@"0%d",seconds];
+    } else {
+        secondString = [NSString stringWithFormat:@"%d",seconds];
+    }
+    
+    if ( minutes < 10 ) {
+        minuteString = [NSString stringWithFormat:@"0%d",minutes];
+    } else {
+        minuteString = [NSString stringWithFormat:@"%d",minutes];
+    }
+    
+    
+    if ( hours == 0 ) {
+        hourString = @"";
+    } else {
+        hourString = [NSString stringWithFormat:@"%d:",hours];
+    }
+        
+    if ( [businessTimeController isBusinessTime] )
+        [statusItem setTitle:[NSString stringWithFormat:@"BT (%@%@:%@)",hourString, minuteString, secondString]];
+    else {
+        [statusItem setTitle:@"BT"];
+    }
+
+}
+
 
 #pragma mark Application Delegate Methods
 - (void)awakeFromNib {
@@ -116,7 +138,13 @@
     [statusItem setTitle:@"BT"];
     [statusItem setHighlightMode:YES];
     businessTimeController = [[BTBusinessTimeController alloc] init];
-        
+    
+    // Start a timer to update the title
+    updateTitleTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 
+                                                        target:self 
+                                                      selector:@selector(updateTitle) 
+                                                      userInfo:nil 
+                                                      repeats:YES];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification*)notification {
